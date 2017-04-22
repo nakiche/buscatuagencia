@@ -32,8 +32,7 @@ a:hover{text-decoration:underline;}
   ;
 }
 
-.field>input[type=text],
-.field>button {
+.field>input[type=text],.field>button {
   display:block;
   font:1.2em 'Montserrat Alternates';
 }
@@ -55,6 +54,29 @@ a:hover{text-decoration:underline;}
 .FBG_resize{margin:0 ; ; padding: 0; width:960px;}
 .FBG_resize h1{font: 18px  'Montserrat Alternates'; color: #FFF;}
 .left{margin:10px 0 0 230px; padding:0; text-align:left; float:left;width:730px;}
+
+.error1
+{
+margin:0 auto; 
+padding:0;
+
+}
+.error
+{
+/*background: none repeat scroll 0 0 #BC1010; */
+font: 18px  'Montserrat Alternates'; color: #FFF;
+background: rgb(26, 188, 156);
+border-radius: 20px 20px 20px 20px; 
+color: white; 
+padding: 10px 20px; 
+text-align: center;
+display: none;
+width: 585px;
+float: left;
+margin:10px 0 0 220px
+/*padding:10px 10px; margin:10px  10px;  float:left; width: 600px;*/
+
+}
 
 /*menu*/
 .menu{padding:0; margin:0 0 0 210px;  float:left; width: 730px;}
@@ -78,6 +100,19 @@ a:hover{text-decoration:underline;}
 .footer p.leftt{ text-align:left;float:left;  padding: 0; margin:18px 0 0 50px; width:530px;}
 .footer p.rightt{ text-align:right;float: right;padding: 0; margin:18px 0 0 0; width:290px;}
 .footer a:hover{text-decoration:underline;}
+
+
+ table
+ {
+    width:100%;
+    border:1px dotted #FF0000;
+    margin: 10 10;
+    background-color: #fff;
+
+  }
+
+  
+    
 
 
 /*clear*/

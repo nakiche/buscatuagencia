@@ -4,19 +4,11 @@
 <meta charset="utf-8">
 <title>Documento sin título</title>
 </head>
+<link href="styles.css" rel="stylesheet">
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Documento sin título</title>
-<style>
-	table{
-		width:100%;
-		border:1px dotted #FF0000;
-		margin: 10 10;
-		
-	}
-		
-		
 
-</style>
 
 </head>
 
@@ -26,7 +18,7 @@
 	
 	$busqueda=$_POST["searchterm"];
 	$busqueda= ltrim($busqueda);
-	echo $busqueda;
+	
 	
 	//usamos la conexion desde otro archivo
 	require ("datos_conexion.php");
@@ -65,9 +57,12 @@
 	}
 	else
 	{
+		//$consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
+		//FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE )
+		//ORDER BY relevancia";
+
 		$consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
-		FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE )
-		ORDER BY relevancia";
+		FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) HAVING relevancia > 0.2 ORDER BY relevancia DESC";
 
 		//$consulta= "SELECT * FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE)";
 

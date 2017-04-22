@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <title>Encontrar agencias de envío - Buscatuagencia.com.ve</title>
 
-<link href="styles.css" rel="stylesheet"> 
+<link href="styles.css" rel="stylesheet">
+<script type="text/javascript"  src="./scripts.js"></script> 
 
 </head>
 
@@ -15,26 +16,14 @@
               <a href="http://www.servicio-virtual.com.ve"><img src="images/logo_tuagecia.png" width="160" height="59" border="0" alt="logo"></a>
         	 </div>
     
-    		<script>
-			function popupwindow(url, title, w, h) {
-    		var w = 1100;
-    		var h = 300;
-    		var left = Number((screen.width/2)-(w/2));
-   		    var tops = Number((screen.height/2)-(h/2));
-			
-			
-			ventana=window.open('','pop', 'toolbar=no, location=no, directories=no, status=no, menubar=no, 			scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+tops+', left='+left);
-			
-}
-
-</script>
+    		
     
     
-			 <form action="Untitled-4.php" method="post" target="pop"  onsubmit="popupwindow()">
+			 <form action="Untitled-4.php" method="post" target="pop"  onsubmit="return validacion();">
              <div class="field" id="searchform">
              	
-  				<input type="text" id="searchterm" name="searchterm" placeholder="what are you searching for?"/>
-  				<button type="submit" id="search">Find!</button>
+  				<input type="text" id="searchterm" name="searchterm" placeholder="Ingrese zona, calle, urbanización, estado.." onkeypress="validacion2();" />
+  				<button type="submit" id="search">Buscar!</button>
 			</div>
 			</form>
             
@@ -47,11 +36,17 @@
      
      <div class="FBG">
         <div class="FBG_resize">
-            
+
+          <div class= "error1">
+          <h2 class="error"></h2>
+          </div>
+
             <div class="left">
         	<h1>Filtrar por empresa de envío:</h1>
             </div>
             <div class="clr"></div>
+
+
           
           <div class="menu">
              <ul>
