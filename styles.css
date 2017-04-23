@@ -49,6 +49,17 @@ a:hover{text-decoration:underline;}
   color:white;
   border:none;
 }
+
+.field>#search:hover{opacity: 0.7;}
+
+input::-webkit-input-placeholder { /* WebKit */
+  font-size: 0.8em; 
+
+}
+input:-moz-placeholder { font-size: 0.8em;  } /* Firefox 18- */
+input::-moz-placeholder { font-size: 0.8em; } /* Firefox 19+ */
+input::-ms-placeholder { font-size: 0.8em;  } /* IE 10+ */
+
 /*FBG*/
 .FBG { margin:0 auto; padding:0;}
 .FBG_resize{margin:0 ; ; padding: 0; width:960px;}
@@ -74,8 +85,15 @@ display: none;
 width: 585px;
 float: left;
 margin:10px 0 0 220px
+transition: width 10s linear 1s transform 2s;
 /*padding:10px 10px; margin:10px  10px;  float:left; width: 600px;*/
 
+}
+
+.error:hover
+{
+
+  width: 900px;
 }
 
 /*menu*/
