@@ -11,6 +11,8 @@
 			
       }
 
+
+
 function validacion()
 	{	
 
@@ -21,10 +23,14 @@ function validacion()
 					
     		 if (x[0].value == "" || x[0].value.length== 0 || /^\s*$/.test(x[0].value))
     		 {
-    		 	var v= document.getElementsByClassName('error');
-    		 	v[0].style.display ="block";
-				v[0].innerHTML='Este campo no puede estar vacío';
-				x[0].focus();					 	 
+    		 					
+				x[0].focus();			
+
+				$(document).ready(function(){
+					$(".error").fadeIn("slow");
+					
+				});	
+
 				return false;
     		 	 
 
@@ -34,14 +40,17 @@ function validacion()
     		 }
 	}
 
+
+
 function validacion2()
 {	
 	y=document.getElementsByName("searchterm").value;
 
 		if( y != "" ) 
 		{  	
-  		var v= document.getElementsByClassName('error');
-    	v[0].style.display ="none";
+  				$(document).ready(function(){
+					$(".error").fadeOut("slow");
+				});	
   		}
 		
 }
@@ -49,7 +58,3 @@ function validacion2()
 
 
 
-
-
-
-	

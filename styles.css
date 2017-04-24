@@ -66,35 +66,36 @@ input::-ms-placeholder { font-size: 0.8em;  } /* IE 10+ */
 .FBG_resize h1{font: 18px  'Montserrat Alternates'; color: #FFF;}
 .left{margin:10px 0 0 230px; padding:0; text-align:left; float:left;width:730px;}
 
-.error1
+.error
 {
 margin:0 auto; 
 padding:0;
+display: none;
 
 }
-.error
+
+
+.error h2
 {
 /*background: none repeat scroll 0 0 #BC1010; */
-font: 18px  'Montserrat Alternates'; color: #FFF;
+font: 18px  'Montserrat Alternates'; 
+color: #FFF;
 background: rgb(26, 188, 156);
 border-radius: 20px 20px 20px 20px; 
 color: white; 
 padding: 10px 20px; 
 text-align: center;
-display: none;
+display: block;
 width: 585px;
 float: left;
-margin:10px 0 0 220px
-transition: width 10s linear 1s transform 2s;
-/*padding:10px 10px; margin:10px  10px;  float:left; width: 600px;*/
+margin:10px 0 0 220px;
+/*-webkit-transition: opacity 1.5s linear;*/ 
+/*-webkit-transition: opacity 10s ease;*/
+
+/*width 1s ease, box-shadow 1s linear;*/
 
 }
 
-.error:hover
-{
-
-  width: 900px;
-}
 
 /*menu*/
 .menu{padding:0; margin:0 0 0 210px;  float:left; width: 730px;}
@@ -103,7 +104,7 @@ transition: width 10s linear 1s transform 2s;
 .menu img{ padding:5px 10px;}
 
 /*FBG POR EMPRESAS EMPRESAS*/
-.FBG_resize2{margin:0 ; ; padding: 0; width:960px;}
+.FBG_resize2{margin:0 ; padding: 0; width:960px;}
 .FBG_resize2 h1{font: 22px  'Montserrat Alternates'; color: #FFF;}
 .leftt{margin:25px 0 0 230px; padding:0; text-align:left; width:300px; float:left;}
 .logo2 {padding:0;  margin:30px 0 0 0; width:350px; float: left;}

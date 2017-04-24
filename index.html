@@ -6,28 +6,28 @@
 
   <link href="styles.css" rel="stylesheet">
 <script type="text/javascript"  src="./scripts.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
 </head>
 
 <body>
+
      <div class="block_header">
        <div class="header">
     		 <div class="logo">
-              <a href="http://www.servicio-virtual.com.ve"><img src="images/logo_tuagecia.png" width="160" height="59" border="0" alt="logo"></a>
+              <a href="./index.html"><img src="images/logo_tuagecia.png" width="160" height="59" border="0" alt="logo"></a>
         	 </div>
-    
-    		
-    
+  
     
 			 <form action="Untitled-4.php" method="post" target="pop"  onsubmit="return validacion();">
              <div class="field" id="searchform">
              	
-  				<input type="text" id="searchterm" name="searchterm" placeholder="Ingrese una o mas palabras relacionadas con la agencia.." onkeypress="validacion2();" />
+  				<input type="text" id="searchterm" name="searchterm" placeholder="Ingrese una o más palabras relacionadas con la agencia..."  onkeypress="validacion2();" onclick="validacion2();" />
   				<button type="submit" id="search">Buscar!</button>
 			</div>
 			</form>
             
-			<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+			
 			<div class="clr"></div>
 		 </div>  
          <div class="clr"></div>
@@ -37,8 +37,8 @@
      <div class="FBG">
         <div class="FBG_resize">
 
-          <div class= "error1">
-          <h2 class="error"></h2>
+          <div class= "error">
+          <h2>Este campo no puede estar vacío</h2>
           </div>
 
             <div class="left">
