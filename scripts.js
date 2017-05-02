@@ -7,7 +7,7 @@
    		    var tops = Number((screen.height/2)-(h/2));
 			
 			
-			ventana=window.open('','pop', 'toolbar=no, location=no, directories=no, status=no, menubar=no, 			scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+tops+', left='+left);
+			ventana=window.open('','pop', 'toolbar=no, location=no, directories=no, status=no, menubar=no,scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+tops+', left='+left);
 			
       }
 
@@ -27,17 +27,17 @@ function validacion()
 				x[0].focus();			
 
 				$(document).ready(function(){
+					$(".errortext").text('Este campo no puede estar vacío');
 					$(".error").fadeIn("slow");
+					$(".tabla").fadeOut("slow");
 					
 				});	
 
 				return false;
     		 	 
 
-    		 }else{
-    		 		
-					popupwindow();
     		 }
+    		 
 	}
 
 
@@ -52,6 +52,21 @@ function validacion2()
 					$(".error").fadeOut("slow");
 				});	
   		}
+		
+}
+
+function validacion3()
+{	
+				y=document.getElementsByName("searchterm").value;
+
+  				$(document).ready(function(){
+  					
+					$(".errortext").text('No se encontraron coincidencias con la busqueda');
+					$(".error").fadeIn("slow");
+					$("#searchterm").focus();
+					
+				});	
+  	
 		
 }
 
