@@ -1,3 +1,31 @@
+//Autocomplete con jquery
+
+// $(document).ready(function() {
+//     $("#resultadoBusqueda").html('<p>JQUERY VACIO</p>');
+// });
+
+// function buscar() 
+// {
+//     var textoBusqueda = $("input#searchterm").val();
+ 	
+ 	
+//      if (textoBusqueda != "") {
+//         $.post("buscar.php", 
+//         	{valorBusqueda: textoBusqueda
+//         		}, function(mensaje) 
+//         			{
+//            			 $("#resultadoBusqueda").html(mensaje);
+           			 
+//         		    }); 
+     
+//      } else { 
+//         $("#resultadoBusqueda").html('<p>JQUERY VACIOs</p>');
+//         };
+// };
+
+
+
+
 
 			function popupwindow(url, title, w, h) 
       {
@@ -61,7 +89,7 @@ function validacion3()
 
   				$(document).ready(function(){
   					
-					$(".errortext").text('No se encontraron coincidencias con la busqueda');
+					$(".errortext").text('no se encontraron coincidencias con la búsqueda');
 					$(".error").fadeIn("slow");
 					$("#searchterm").focus();
 					

@@ -7,26 +7,80 @@
   <link href="styles.css" rel="stylesheet">
 <script type="text/javascript"  src="./scripts.js"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+  
+//  $(function() {
+//    //autocomplete
+//    $("#tags").autocomplete({
+    
+//     source: "search.php",
+//         minLength: 1
+//    });              
+// });
+    
+$(function() {
+   //autocomplete
+   $("#searchterm").autocomplete({
+    
+    source: "search.php",
+        minLength: 1
+   });              
+});
+  
+</script>
 
 </head>
 
 <body>
-
      <div class="block_header">
        <div class="header">
     		 <div class="logo">
               <a href="./index.php"><img src="images/logo_tuagecia.png" width="160" height="59" border="0" alt="logo"></a>
         	 </div>
   
+
+      <form action="" method="post" onsubmit="return validacion();">
     
-			 <form action="" method="post" onsubmit="return validacion();">
-             <div class="field" id="searchform">
+      <div class="ui-widget" id="field">
+         <!-- <label for="tags">Tags: </label> -->
+         <!-- <input type="text" id="tags"> -->
+       <input type="text" id="searchterm" name="searchterm" placeholder="Ingrese una o más palabras relacionadas a la agencia o sucursal" onkeyup="buscar();" onkeypress="validacion2();" onclick="validacion2()"; >
+       <button type="submit" id="search">Buscar!</button>
+       <!-- <input id="tags"> -->
+      </div>
+
+		  </form>
+
+
+    	 <!-- <form action="" method="post" onsubmit="return validacion();">
+             <div class="field" id="searchform"> -->
              	
-  				<input type="text" id="searchterm" name="searchterm" placeholder="Ingrese una o más palabras relacionadas a la agencia o sucursal"  onkeypress="validacion2();" onclick="validacion2();" autocomplete="off" />
+  				<!-- <input type="text" id="searchterm" name="searchterm" placeholder="Ingrese una o más palabras relacionadas a la agencia o sucursal" onkeypress="validacion2();" onclick="validacion2();" autocomplete="off" /> -->
+          
+          
+            <!-- <input type="text" id="searchterm" name="searchterm" placeholder="Ingrese una o más palabras relacionadas a la agencia o sucursal" onkeyup="buscar();" onkeypress="validacion2();" onclick="validacion2()"; autocomplete="off" />
+        
+          
   				<button type="submit" id="search">Buscar!</button>
-			</div>
+
+			       </div>
 			</form>
-  
+
+         -->
+    
+
   	<div class="clr"></div>
 		 </div>  
          <div class="clr"></div>
@@ -36,6 +90,10 @@
      <div class="FBG">
         <div class="FBG_resize">
 
+        <!-- Mensaje de la busqueda instantanea -->
+           <div id="resultadoBusqueda"></div>
+
+          <!-- Mensaje de error -->
           <div class="error">
           <h2 class="errortext"></h2>
           </div>
@@ -74,15 +132,18 @@
   </div>
  	<div class="clr"></div>
     
-    
+     
+
+
 <?php
+
 
   if (isset($_POST["searchterm"]))
   {  
   $busqueda=$_POST["searchterm"];
   $busqueda= ltrim($busqueda);
   
-  
+    
   //usamos la conexion desde otro archivo
   require ("datos_conexion.php");
   
@@ -107,7 +168,7 @@
   { 
 
     //CUENTA EL NUMERO DE PALABRAS 
-      $trozos=explode(" ",$busqueda); 
+    $trozos=explode(" ",$busqueda); 
     $numero=count($trozos); 
 
     if ($numero==1) 
@@ -171,6 +232,12 @@
    
     if($num_rows>0)
       {
+
+    //haciendo la tabla responsive  
+    ?>    
+    <div style="overflow-x:auto;">    
+    <?php
+
     echo "<table class='tabla'><tr>";
 
     echo "<th>Empresa</th>";
@@ -220,6 +287,12 @@
   }
 
   echo "</table>";
+
+  ?>
+
+  </div>
+
+  <?php
 
   //cerramos la conexiòn
   mysqli_close($conexion);
