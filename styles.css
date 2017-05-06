@@ -10,7 +10,7 @@ a:hover{text-decoration:underline;}
 .block_header {margin:0 auto; padding:0;}
 .header {margin:0; padding:0; width:960px;}
 /*Logo*/
-.logo {padding:0;  margin:50px 0 0 50px; width:180px; float: left;}
+.logo {padding:0;  margin:30px 0 0 50px; width:180px; float: left;}
 
 
 /*search bar*/
@@ -56,7 +56,7 @@ a:hover{text-decoration:underline;}
 #field {
   padding: 0;
   display:flex;
-  margin: 50px 0 0 0;
+  margin: 30px 0 0 0;
   width:600px;
   float:left;
   flex-direction:row;
@@ -92,12 +92,12 @@ a:hover{text-decoration:underline;}
 
 #field>#search:hover{opacity: 0.7;}
 
- ul.ui-autocomplete {
+ ul.ui-autocomplete 
+ {
         
-        font:1em 'Montserrat Alternates';
-      
-    }
+ font:1em 'Montserrat Alternates';      
 
+ }
 
 /*input placeholder*/
 
@@ -111,7 +111,7 @@ input::-ms-placeholder { font-size: 0.7em;  } /* IE 10+ */
 
 /*FBG*/
 .FBG { margin:0 auto; padding:0;}
-.FBG_resize{margin:0 ; ; padding: 0; width:960px;}
+.FBG_resize{margin:0 ; padding: 0; width:960px;}
 .FBG_resize h1{font: 18px  'Montserrat Alternates'; color: #FFF;}
 .left{margin:10px 0 0 230px; padding:0; text-align:left; float:left;width:730px;}
 
@@ -177,11 +177,11 @@ margin:10px 0 0 231px;
 .footer p.rightt{ text-align:right;float: right;padding: 0; margin:18px 0 0 0; width:290px;}
 .footer a:hover{text-decoration:underline;}
 
-
+/*results table*/
  table
  {
-    width:960px;
-    margin: 0 auto;
+    
+    
     border-collapse: collapse;
     background-color: #fff;
     font: 0.8em  'Montserrat Alternates'; 
@@ -215,6 +215,48 @@ th {
     font: 1.2em 'Montserrat Alternates';
 }    
 
+.tabla
+{
+width:960px;  
+overflow-x:auto;
+margin: 0 auto;
+
+}
+
+.tabla p
+{
+font: 0.7em 'Montserrat Alternates';
+margin:3px 3px;
+padding:0;
+}
+
+.tabla span
+{
+font: 0.9em 'Montserrat Alternates';
+margin:3px 3px;
+padding:0;
+text-decoration: underline;  
+color: blue;
+}
+.tabla a
+{
+font: 0.9em 'Montserrat Alternates';
+margin:5px 5px;
+padding:0;
+text-decoration: none;  
+color: #000;
+
+}
+
+.tabla a:hover
+{
+text-decoration:underline;
+} 
+
+.centered
+{
+text-align: center;
+}
 
 /*clear*/
 .clr{clear:both; padding:0; margin:0; width:960px;}

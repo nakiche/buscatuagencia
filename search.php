@@ -50,8 +50,8 @@ function conectar(){
   else //si tiene solo una palabra hacemos la consulta sql con MATCH AGAINST 
   { 
 
-  $consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$term' IN BOOLEAN MODE) as relevancia
-    FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$term' IN BOOLEAN MODE ) HAVING relevancia > 0.2 ORDER BY relevancia DESC LIMIT 0,10";
+  $consulta="SELECT *, MATCH (EMPRESA,COD_AGE,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$term' IN BOOLEAN MODE) as relevancia
+    FROM agencias WHERE MATCH (EMPRESA,COD_AGE,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$term' IN BOOLEAN MODE ) HAVING relevancia > 0.2 ORDER BY relevancia DESC LIMIT 0,10";
   }    
 
     
