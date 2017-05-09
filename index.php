@@ -43,7 +43,7 @@ $(function() {
         </div>
   
 
-  <form action="" method="get" onsubmit="return validacion();">
+  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" onsubmit="return validacion();">
     
     <div class="ui-widget" id="field">
          <!-- <label for="tags">Tags: </label> -->
@@ -110,11 +110,24 @@ $(function() {
   </div>   
       
 <?php
+//prevent sql inyection
+function test_input($data) 
+{
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
 
 if (isset($_GET["searchterm"]))
 {  
-    $busqueda=$_GET["searchterm"];
-    $busqueda= ltrim($busqueda);
+
+    $busqueda = test_input($_GET["searchterm"]);
+    
+
+
+    //$busqueda=$_GET["searchterm"];
+    //$busqueda= ltrim($busqueda);
   
     
     //usamos la conexion desde otro archivo
