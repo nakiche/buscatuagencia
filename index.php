@@ -110,6 +110,7 @@ $(function() {
   </div>   
       
 <?php
+
 //prevent sql inyection
 function test_input($data) 
 {
@@ -270,8 +271,10 @@ if (isset($_GET["searchterm"]))
     {
 
       echo "<tr>";                              //llenamos la tabla
+
+      // echo "<td>".$fila['COD_INT']. "</td>";
       echo "<td>".$fila['EMPRESA']. "</td>";
-      echo "<td>".$fila['COD_AGE']. "</td>";
+      echo "<td class='centered' >".$fila['COD_AGE']. "<br><a href='untitled-4.php?cod_int=".$fila['COD_INT']."' onclick='popupwindow();' target='pop'>Ver</a></td>";
       echo "<td>".$fila['NOM_AGE']. "</td>";
       echo "<td>".$fila['TEL_AGE']. "</td>";
       echo "<td>".$fila['HOR_AGE']. "</td>";

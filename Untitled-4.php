@@ -17,8 +17,8 @@
 
 <?php
 	
-	$busqueda=$_POST["searchterm"];
-	$busqueda= ltrim($busqueda);
+	$busqueda=$_GET["cod_int"];
+	
 	
 	
 	//usamos la conexion desde otro archivo
@@ -41,83 +41,18 @@
 	//para incluir los tildes	
 	mysqli_set_charset($conexion, "utf8");	
 	
-	if ($busqueda<>'')
-	{ 
-
-		//CUENTA EL NUMERO DE PALABRAS 
-   		$trozos=explode(" ",$busqueda); 
-		$numero=count($trozos); 
-
-	 	if ($numero==1) 
-	 	{ 
+	
    		//SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
 
-			$consulta="SELECT * FROM agencias WHERE EMPRESA LIKE '%$busqueda%' OR COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%'";
+	$consulta="SELECT * FROM agencias WHERE  COD_INT = $busqueda";
 	
-		}
-		else
-		{
-			//$consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
-			//FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE )
-			//ORDER BY relevancia";
-
-			$consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
-			FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) HAVING relevancia > 0.2 ORDER BY relevancia DESC";
-
-			//$consulta= "SELECT * FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE)";
-			
-			$num_rows = mysqli_num_rows(mysqli_query($conexion,$consulta));
-
-			
-
-		}
-
+		
 		//establecemos un filtro
 		
 	$resulados= mysqli_query($conexion,$consulta);
 	
 
-	//$num_rows =mysqli_num_rows($resulados);
-	
-	//echo "$num_rows";
-
-	
-	//mira fila a fila lo que hay almacenado en cada tabla, es un array
-	
-	//$registros=1;
-	
-	//while($registros<=3){
-	
-	//array indexado
-	//while(($fila=mysqli_fetch_row($resulados))==true){
-	//while(($fila=mysqli_fetch_row($resulados))){
-	
-	//$fila=mysqli_fetch_row($resulados);
-	
-	//creamos tabla
-	//echo "<table><tr><td>";
-
-	//echo $fila[0] . "</td><td> ";
-	
-	//echo $fila[1]. "</td><td> ";
-	
-	//echo $fila[2]. "</td><td> ";
-	
-	//echo $fila[3]. "</td><td> ";
-	
-	//echo $fila[4]. "</td><td> ";
-	
-	//echo $fila[5]. "</td><td> ";
-	
-	//echo $fila[6]. "</td><td></tr></table> ";
-	
-	//echo "<br>";
-	//echo "<br>";
-	
-	//$registros++;
-	
-	//array asociativo
-	
+		
 	while($fila=mysqli_fetch_array($resulados, MYSQL_ASSOC))
 	{
 	//while($fila=mysqli_fetch_object($resulados)){	
@@ -149,13 +84,7 @@
 	//cerramos la conexiòn
 	mysqli_close($conexion);
 
-	}
-	else
-	{
-
-		echo ('error');
-	}
-
+	
 ?>
 
 

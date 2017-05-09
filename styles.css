@@ -241,6 +241,14 @@ color: #000;
 
 }
 
+
+.tabla td>a
+{
+color: blue;
+font: 0.9em 'Montserrat Alternates';
+
+}
+
 .tabla a:hover
 {
 text-decoration:underline;
@@ -292,6 +300,11 @@ color: blue;
 {
 text-decoration:underline;
 } 
+
+.centered
+{
+  text-align: center;
+}
 
 /*clear*/
 .clr{clear:both; padding:0; margin:0; width:960px;}
