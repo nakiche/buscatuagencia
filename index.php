@@ -162,22 +162,22 @@ if (isset($_GET["searchterm"]))
     if ($numero==1) 
     { 
       //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
-      $sql_total="SELECT * FROM agencias WHERE EMPRESA LIKE '%$busqueda%' OR COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%'";
+      $sql_total="SELECT * FROM agencias WHERE EMPRESA LIKE '%$busqueda%' OR COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%' LIMIT 0,80";
 
        $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));      
     }
     else
     {  
      $sql_total="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
-      FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) ";
+      FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) LIMIT 0,80";
     }  
       $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));
 
 
-
+    //paginación  
     $total_paginas=ceil($num_rows_total/$tamano_paginas);
 
-    $empezar_desde=($pagina-1)*$tamano_paginas; //fin paginación
+    $empezar_desde=($pagina-1)*$tamano_paginas; 
 
 
 
@@ -236,9 +236,7 @@ if (isset($_GET["searchterm"]))
     {
     //haciendo la tabla responsive  
       ?>    
-      
       <div class= "tabla">    
-       
       <?php
         
         echo "<p>Cerca de: $num_rows_total resultados</p>" ; //paginación
@@ -269,24 +267,32 @@ if (isset($_GET["searchterm"]))
       echo "<td>".$fila['CIU_AGE']. "</td></tr>";    
    }
 
-    echo "</table>";                            //cerramos la tabla
+      echo "</table>";                            //cerramos la tabla
 
-      //-------------------paginacion
+      ?>
 
-    
-    
+      </div>
 
-    
+      <?php
+
+    //-------------------paginacion
+
     //muestro los distintos índices de las páginas, si es que hay varias páginas 
     if ($total_paginas > 1)
     { 
-       
-       echo "<p>Página $pagina  de  $total_paginas </p>";
-       
+      
        ?>
-       <div class="centered">        
+       <div class="pagination">        
        <?php 
 
+       echo "<p>Página $pagina  de  $total_paginas </p>";
+       
+       
+
+       if ($pagina !=1)
+       {
+          echo "<a href='index.php?searchterm=$busqueda&pagina= ".($pagina-1)."'><img src='images/izq.gif' border='0'></a>";
+       }                                                     
 
       for ($i=1;$i<=$total_paginas;$i++)
       { 
@@ -302,23 +308,18 @@ if (isset($_GET["searchterm"]))
           echo "<a href='index.php?searchterm=$busqueda&pagina=$i'>  $i </a>";
       }
 
+      if ($pagina !=$total_paginas)
+       {
+          echo "<a href='index.php?searchterm=$busqueda&pagina= ".($pagina+1)."'><img src='images/der.gif' border='0'></a>";
+       }      
+
 
     }
-      ?>
-      </div> 
-      <?php
-
-    // for ($i=1;$i<=$total_paginas;$i++)
-    // {                   
-      
-    //   echo "<a href='index.php?searchterm=$busqueda&pagina=$i'>  $i </a>";
-            
-    // }
        ?>
+       </div> 
+       <?php
 
-      </div>
-
-      <?php
+       
 
     //cerramos la conexiòn
     mysqli_close($conexion);

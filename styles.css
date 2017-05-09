@@ -184,7 +184,8 @@ margin:10px 0 0 231px;
     
     border-collapse: collapse;
     background-color: #fff;
-    font: 0.8em  'Montserrat Alternates'; 
+    font: 0.8em  'Montserrat Alternates';
+
     
 
   }
@@ -230,14 +231,6 @@ margin:3px 3px;
 padding:0;
 }
 
-.tabla span
-{
-font: 0.9em 'Montserrat Alternates';
-margin:3px 3px;
-padding:0;
-text-decoration: underline;  
-color: blue;
-}
 .tabla a
 {
 font: 0.9em 'Montserrat Alternates';
@@ -253,10 +246,52 @@ color: #000;
 text-decoration:underline;
 } 
 
-.centered
+.pagination
 {
+width:960px;  
 text-align: center;
+margin: 0 auto;
+
 }
+
+.pager a
+{
+  font: 0.9em 'Montserrat Alternates';
+margin:5px 5px;
+padding:0;
+text-decoration: none;  
+color: #000;
+}
+.pagination a
+{
+font: 0.9em 'Montserrat Alternates';
+margin:5px 5px;
+padding:0;
+text-decoration: none;  
+color: #000;
+}
+
+.pagination p
+{
+font: 0.7em 'Montserrat Alternates';
+margin:3px 3px;
+padding:0;
+text-align: justify;
+}
+
+.pagination span
+{
+font: 0.9em 'Montserrat Alternates';
+margin:3px 3px;
+padding:0;
+text-decoration: underline;  
+color: blue;
+}
+
+.pagination a:hover
+{
+text-decoration:underline;
+} 
 
 /*clear*/
 .clr{clear:both; padding:0; margin:0; width:960px;}
