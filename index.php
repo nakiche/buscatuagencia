@@ -36,6 +36,7 @@ $(function() {
 </head>
 
 <body>
+ <div class="main"> 
   <div class="block_header">
     <div class="header">
     		<div class="logo">
@@ -71,15 +72,9 @@ $(function() {
 			</form>
 
          -->
-    
+   
 
-    <div class="clr"></div>
-	  </div>  
-  <div class="clr"></div>
-  </div>
-    
-     
-  <div class="FBG">
+<div class="FBG">
     <div class="FBG_resize">
 
         <!-- Mensaje de la busqueda instantanea con jquery-->
@@ -97,17 +92,33 @@ $(function() {
           
         <div class="menu">
           <ul>
-            <li><a href="mrw.html"><img src="images/logomrw.png" width="98" height="43" alt="mrw"></a> </li>
+          
+            <li><a href="mrw.html"><img src="images/logomrw.png" width="98" height="43" alt="mrw"></a></li>
+            <li><a href="zoom.html"><img src="images/logozoom.png" width="98" height="36" alt="zoom"></a></li>
+            <li><a href="domesa.html"><img src="images/logodomesa.png" width="98" height="43" alt="domesa"></a></li>
+            <li><a href="tealca.html"><img src="images/logotealca.png" width="98" height="43" alt="tealca"></a></li>
+
+           <!--  <li><a href="mrw.html"><img src="images/logomrw.png" width="98" height="43" alt="mrw"></a> </li>
             <li><a href="zoom.html"><img src="images/logozoom.png" width="98" height="36" alt="zoom"></a> </li>
             <li><a href="domesa.html"><img src="images/logodomesa.png" width="98" height="43" alt="domesa"></a> </li>
-            <li><a href="tealca.html"><img src="images/logotealca.png" width="98" height="43" alt="tealca"></a> </li>
-        	                
+            <li><a href="tealca.html"><img src="images/logotealca.png" width="98" height="43" alt="tealca"></a> </li> -->
+                          
           </ul>
         </div>
     <div class="clr"></div>
     </div>
   <div class="clr"></div>
   </div>   
+
+  
+
+    <div class="clr"></div>
+	  </div>  
+  <div class="clr"></div>
+  </div>
+    
+  
+  
       
 <?php
 
@@ -120,13 +131,13 @@ function test_input($data)
   return $data;
 }
 
+ 
+
 if (isset($_GET["searchterm"]))
 {  
-
-    $busqueda = test_input($_GET["searchterm"]);
     
-
-
+  $busqueda = test_input($_GET["searchterm"]);
+  
     //$busqueda=$_GET["searchterm"];
     //$busqueda= ltrim($busqueda);
   
@@ -134,8 +145,7 @@ if (isset($_GET["searchterm"]))
     //usamos la conexion desde otro archivo
     require ("datos_conexion.php");
   
-    //conexion en programacion orientado a obtejo
-    //$conexion=mysqli_connect($db_host,$db_usuario,$db_contra,$db_nombre);
+    //conexion bdd
     $conexion=mysqli_connect($db_host,$db_usuario,$db_contra);
     
     //si no llega a ejecutarse esta funcion
@@ -251,6 +261,7 @@ if (isset($_GET["searchterm"]))
     //haciendo la tabla responsive  
       ?>    
       <div class= "tabla">    
+        
       <?php
         
         echo "<p>Cerca de: $num_rows_total resultados</p>" ; //paginación
@@ -285,11 +296,7 @@ if (isset($_GET["searchterm"]))
 
       echo "</table>";                            //cerramos la tabla
 
-      ?>
-
-      </div>
-
-      <?php
+     
 
     //-------------------paginacion
 
@@ -298,6 +305,7 @@ if (isset($_GET["searchterm"]))
     { 
       
        ?>
+
        <div class="pagination">        
        <?php 
 
@@ -307,7 +315,7 @@ if (isset($_GET["searchterm"]))
 
        if ($pagina !=1)
        {
-          echo "<a href='index.php?searchterm=$busqueda&pagina= ".($pagina-1)."'><img src='images/izq.gif' border='0'></a>";
+          echo "<a href='index.php?searchterm=$busqueda&pagina=".($pagina-1)."'><img src='images/izq.gif' border='0'></a>";
        }                                                     
 
       for ($i=1;$i<=$total_paginas;$i++)
@@ -326,14 +334,16 @@ if (isset($_GET["searchterm"]))
 
       if ($pagina !=$total_paginas)
        {
-          echo "<a href='index.php?searchterm=$busqueda&pagina= ".($pagina+1)."'><img src='images/der.gif' border='0'></a>";
+          echo "<a href='index.php?searchterm=$busqueda&pagina=".($pagina+1)."'><img src='images/der.gif' border='0'></a>";
        }      
 
 
     }
        ?>
        </div> 
+    </div>
        <?php
+
 
        
 
@@ -344,11 +354,8 @@ if (isset($_GET["searchterm"]))
   else
   {
 
-    echo ('error');
+    echo ('error'); //fin del if $busqueda <> ""
   }
-
-  
-    
 
 } //fin del isset
 
@@ -358,7 +365,7 @@ if (isset($_GET["searchterm"]))
     <div class="footer_resize">
         
           <p class="leftt">>© Páginas web desde 2017 BUSCATUAGENCIA.COM.VE Todos los derechos reservados.<br />
-          <a href="index.html"> Inicio </a> | <a href="contactar.html"> Contactar</a>| <a href="sitemap.html"> Mapa del sitio</a></p>
+          <a href="index.php"> Inicio </a> | <a href="contactar.html"> Contactar</a>| <a href="sitemap.html"> Mapa del sitio</a></p>
           
           <p class="rightt"><a href="http://www.servicio-virtual.com.ve"><strong>buscatuagencia.com.ve</strong></a></p>
             
@@ -366,7 +373,7 @@ if (isset($_GET["searchterm"]))
     <div class="clr"></div>
   </div>
   <div class="clr"></div>
-
+ </div>
 </body>
 
 

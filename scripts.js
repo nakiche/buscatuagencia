@@ -34,7 +34,7 @@ function popupwindow(url, title, w, h)
    		    var tops = Number((screen.height/2)-(h/2));
 			
 			
-			ventana=window.open('','pop', 'toolbar=no, location=no, directories=no, status=no, menubar=no,scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+tops+', left='+left);
+			var ventana=window.open('','pop', 'toolbar=no, location=no, directories=no, status=no, menubar=no,scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+tops+', left='+left);
 			
     }
 
@@ -63,7 +63,8 @@ function validacion()
 				return false;
     		 	 
 
-    		 }
+    		 }	 	
+
     		 
 	}
 
@@ -97,6 +98,14 @@ function validacion3()
 		
 }
 
+// function fading()
+// {
+
+// 					$(document).ready(function(){
+// 					$(".FBG").fadeOut('slow');
+// 					});	
+
+// }
 
 
 

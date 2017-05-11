@@ -2,8 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Documento sin título</title>
-</head>
+<title>Agencias y sucursales de envío</title>
 <link href="styles.css" rel="stylesheet">
 <script type="text/javascript"  src="./scripts.js"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -56,29 +55,40 @@
 	while($fila=mysqli_fetch_array($resulados, MYSQL_ASSOC))
 	{
 	//while($fila=mysqli_fetch_object($resulados)){	
-		
-		echo "<table><tr><td>";
+		?>
+			
+		<div>
+		 <div class="popup-heading">
+		 	<h1>Oficina o sucursal</h1>
 
-		echo $fila["EMPRESA"] . "</td><td> ";
-	
-		echo $fila["COD_AGE"]. "</td><td> ";
-	
-		echo $fila["NOM_AGE"]. "</td><td> ";
-	
-		echo $fila["TEL_AGE"]. "</td><td> ";
-	
-		echo $fila["HOR_AGE"]. "</td><td> ";
-	
-		echo $fila["DIR_AGE"]. "</td><td> ";
-	
-		echo $fila["EST_AGE"]. "</td><td> ";
-	
-		echo $fila["CIU_AGE"]. "</td><td></tr></table> ";
+		 </div>
+
+		 <div class="popup-body">
+		  <div class="popup-body-box">	
+		 	<p><span><strong> NOMBRE </strong></span></p>
+		 	<p><strong>EMPRESA:</strong> TEALCA</p>
+		 	<p><strong>CÓDIGO:</strong></p>
+		 	<p><strong>NOMBRE: </strong> BARECELONA</p>
+		 	<p><strong>TELÉFONO: </strong> 0283-23992121</p>
+		 	<p><strong>DIRECCIÓN: </strong> Avenida Bolivar Edificio Arónica P.B Local 1 Secto...</p>
+		 	<p><strong>ESTADO: </strong> ANZOATEGUI</p>
+		 	<p><strong>CIUDAD: </strong> BARCELONA</p>
+		  </div>
+
+		  <div>
+		  		<img src="images/logomrw1.png" width="98" height="43" alt="mrw">	
+		  </div>
+
+
+		 </div>	
+
+		</div>
+
+
+
 		
-		echo "<br>";
-		echo "<br>";
-	
-	
+		 
+		<?php
 	}
 
 	//cerramos la conexiòn

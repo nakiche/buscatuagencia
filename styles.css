@@ -1,10 +1,19 @@
 @charset "utf-8";
 @import url(http://fonts.googleapis.com/css?family=Montserrat+Alternates);
 
-body {margin:0; padding:0 ;width: 100%;background-image: url("images/Freight-Truck-Trailer.jpg");  background-size: cover;background-repeat:no-repeat;}
-html {padding:0; margin:0;}
+body {margin:0; padding:0 ;width: 100%; height: 100% }
+html {padding:0; margin:0; height: 100%}
 a {text-decoration:none;}
 a:hover{text-decoration:underline;} 
+
+.main
+{
+  width: 100%;
+  height: 100%;
+  background-image: url("images/Freight-Truck-Trailer.jpg");
+  background-size: cover;
+  background-repeat:no-repeat;
+}
 
 /*header*/
 .block_header {margin:0 auto; padding:0;}
@@ -184,10 +193,6 @@ margin:10px 0 0 231px;
     
     border-collapse: collapse;
     background-color: #fff;
-    font: 0.8em  'Montserrat Alternates';
-
-    
-
   }
 
 th, td {
@@ -213,8 +218,14 @@ th {
     text-align: center;
     background-color: rgb(26, 188, 156);
     color: white;
-    font: 1.2em 'Montserrat Alternates';
+    font: 1em 'Montserrat Alternates';
 }    
+
+td
+{
+font-family: Verdana, Geneva, sans-serif; 
+font-size: 0.8em;
+}
 
 .tabla
 {
@@ -305,6 +316,47 @@ text-decoration:underline;
 {
   text-align: center;
 }
+
+/*popup*/
+
+.popup-heading
+{
+    color: #ffffff;
+    background-color: #222;
+    border-color: #222;
+    
+}
+
+.popup-heading h1
+{
+  font: 1.5em 'Montserrat Alternates';
+  margin:0;
+  padding: 10px 10px;
+}
+
+.popup-body
+{
+  display: block;
+  padding: 5px;
+}
+
+.popup-body-box
+{
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 14px;
+  margin:0;
+  padding: 5px 5px;
+  width: 50%;
+  float: left;
+}
+
+.popup-body-box span
+{
+  font: 1.4em 'Montserrat Alternates';
+  color: #006dd8;
+}
+
+
 
 /*clear*/
 .clr{clear:both; padding:0; margin:0; width:960px;}
