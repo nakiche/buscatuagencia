@@ -18,8 +18,6 @@
 	
 	$busqueda=$_GET["cod_int"];
 	
-	
-	
 	//usamos la conexion desde otro archivo
 	require ("datos_conexion.php");
 	
@@ -58,29 +56,28 @@
 		?>
 			
 		<div>
-		 <div class="popup-heading">
+		 	<div class="popup-heading">
 		 	<h1>Oficina o sucursal</h1>
+		 	</div>
 
-		 </div>
+		 	<div class="popup-body">
+		  		<div class="popup-body-box">	
+		 			<span><strong><?php echo $fila['NOM_AGE']?></strong></span>
+		 			<p><strong>EMPRESA: </strong><?php echo $fila['EMPRESA']?></p>
+		 			<p><strong>CÓDIGO: </strong><?php echo $fila['COD_AGE']?></p>
+		 			<p><strong>TELÉFONO: </strong><?php echo $fila['TEL_AGE']?></p>
+		 			<p><strong>HORARIO: </strong><?php echo $fila['HOR_AGE']?></p>
+		 			<p><strong>DIRECCIÓN: </strong><?php echo $fila['DIR_AGE']?></p>
+		 			<p><strong>ESTADO: </strong><?php echo $fila['EST_AGE']?></p>
+		 			<p><strong>CIUDAD: </strong><?php echo $fila['CIU_AGE']?></p>
+		  		</div>
 
-		 <div class="popup-body">
-		  <div class="popup-body-box">	
-		 	<p><span><strong> NOMBRE </strong></span></p>
-		 	<p><strong>EMPRESA:</strong> TEALCA</p>
-		 	<p><strong>CÓDIGO:</strong></p>
-		 	<p><strong>NOMBRE: </strong> BARECELONA</p>
-		 	<p><strong>TELÉFONO: </strong> 0283-23992121</p>
-		 	<p><strong>DIRECCIÓN: </strong> Avenida Bolivar Edificio Arónica P.B Local 1 Secto...</p>
-		 	<p><strong>ESTADO: </strong> ANZOATEGUI</p>
-		 	<p><strong>CIUDAD: </strong> BARCELONA</p>
-		  </div>
-
-		  <div>
-		  		<img src="images/logomrw1.png" width="98" height="43" alt="mrw">	
-		  </div>
+		  		<div class="popup-body-box">
+		  			<img src="images/<?php echo $fila['IMG_AGE']?>" width="440" height="250" alt="Logo">	
+		  		</div>
 
 
-		 </div>	
+			</div>	
 
 		</div>
 

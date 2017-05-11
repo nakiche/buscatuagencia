@@ -367,7 +367,7 @@ if (isset($_GET["searchterm"]))
           <p class="leftt">>© Páginas web desde 2017 BUSCATUAGENCIA.COM.VE Todos los derechos reservados.<br />
           <a href="index.php"> Inicio </a> | <a href="contactar.html"> Contactar</a>| <a href="sitemap.html"> Mapa del sitio</a></p>
           
-          <p class="rightt"><a href="http://www.servicio-virtual.com.ve"><strong>buscatuagencia.com.ve</strong></a></p>
+          <p class="rightt"><a href="http://www.servicio-virtual.com.ve"><span>buscatuagencia.com.ve</span></a></p>
             
     </div>
     <div class="clr"></div>

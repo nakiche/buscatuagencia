@@ -28,8 +28,8 @@
 
 function popupwindow(url, title, w, h) 
 	{
-    		var w = 1100;
-    		var h = 300;
+    		var w = 1050;
+    		var h = 370;
     	 	var left = Number((screen.width/2)-(w/2));
    		    var tops = Number((screen.height/2)-(h/2));
 			
