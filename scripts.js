@@ -28,14 +28,13 @@
 
 function popupwindow(url, title, w, h) 
 	{
-    		var w = 1050;
+    		var w = 1100;
     		var h = 370;
     	 	var left = Number((screen.width/2)-(w/2));
    		    var tops = Number((screen.height/2)-(h/2));
 			
 			
 			var ventana=window.open('','pop', 'toolbar=no, location=no, directories=no, status=no, menubar=no,scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+tops+', left='+left);
-			
     }
 
 
@@ -98,14 +97,28 @@ function validacion3()
 		
 }
 
-// function fading()
+// function hide()
 // {
 
 // 					$(document).ready(function(){
-// 					$(".FBG").fadeOut('slow');
+// 					$(".left").css('display','none');
+// 					$(".menu").css('display','none');
+// 					$(".left2").css('display','block');
+// 					$(".menu2").css('display','block');
 // 					});	
 
 // }
 
+// function show()
+// {
+
+// 					$(document).ready(function(){
+// 					$(".left").css('display','block');
+// 					$(".menu").css('display','block');
+// 					$(".left2").css('display','none');
+// 					$(".menu2").css('display','none');
+// 					});	
+
+// }
 
 

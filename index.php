@@ -37,7 +37,9 @@ $(function() {
 
 <body>
  <div class="main"> 
+  
   <div class="block_header">
+    
     <div class="header">
     		<div class="logo">
           <a href="./index.php"><img src="images/logo_tuagecia.png" width="160" height="59" border="0" alt="logo"></a>
@@ -86,7 +88,7 @@ $(function() {
         </div>
 
         <div class="left">
-        <h1>Filtrar por empresa de envíos:</h1>
+        <h1>Búsqueda por empresa de envíos:</h1>
         </div>
         <div class="clr"></div>
           
@@ -98,24 +100,42 @@ $(function() {
             <li><a href="domesa.html"><img src="images/logodomesa.png" width="98" height="43" alt="domesa"></a></li>
             <li><a href="tealca.html"><img src="images/logotealca.png" width="98" height="43" alt="tealca"></a></li>
 
-           <!--  <li><a href="mrw.html"><img src="images/logomrw.png" width="98" height="43" alt="mrw"></a> </li>
-            <li><a href="zoom.html"><img src="images/logozoom.png" width="98" height="36" alt="zoom"></a> </li>
-            <li><a href="domesa.html"><img src="images/logodomesa.png" width="98" height="43" alt="domesa"></a> </li>
-            <li><a href="tealca.html"><img src="images/logotealca.png" width="98" height="43" alt="tealca"></a> </li> -->
+                                  
+          </ul>
+       </div>
+
+          <div class="clr"></div>
+    </div>  
+          <div class="clr"></div>
+</div>
+
+
+        <!-- <div class="left2">
+        <h1>Filtrar resultado por empresa de envíos:</h1>
+        </div>
+        <div class="clr"></div>
+
+        <div class="menu2">
+          <ul>
+          
+            <li><a href="mrw.html"><img src="images/logomrw.png" width="98" height="43" alt="mrw"></a></li>
+            <li><a href="zoom.html"><img src="images/logozoom.png" width="98" height="36" alt="zoom"></a></li>
+            <li><a href="domesa.html"><img src="images/logodomesa.png" width="98" height="43" alt="domesa"></a></li>
+            <li><a href="tealca.html"><img src="images/logotealca.png" width="98" height="43" alt="tealca"></a></li>
+
+           
                           
           </ul>
-        </div>
-    <div class="clr"></div>
-    </div>
-  <div class="clr"></div>
-  </div>   
+        </div>-->
 
-  
+    
 
+ 
     <div class="clr"></div>
-	  </div>  
-  <div class="clr"></div>
   </div>
+    <div class="clr"></div>
+</div> 
+    
     
   
   
@@ -131,11 +151,16 @@ function test_input($data)
   return $data;
 }
 
- 
 
 if (isset($_GET["searchterm"]))
 {  
-    
+  
+  ?>
+    <!-- <script language="javascript"> 
+     hide(); 
+    </script>  -->
+  <?php
+
   $busqueda = test_input($_GET["searchterm"]);
   
     //$busqueda=$_GET["searchterm"];
@@ -182,11 +207,13 @@ if (isset($_GET["searchterm"]))
       $trozos=explode(" ",$busqueda); 
       $numero=count($trozos); 
 
+    //$reg_query="SELECT * FROM agencias WHERE EMPRESA LIKE '%$busqueda%' OR COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%' LIMIT 0,80" ; 
     //Paginación    
     if ($numero==1) 
     { 
       //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
-      $sql_total="SELECT * FROM agencias WHERE EMPRESA LIKE '%$busqueda%' OR COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%' LIMIT 0,80";
+      //$sql_total= $reg_query; // query en forma de variable
+    $sql_total="SELECT * FROM agencias WHERE EMPRESA LIKE '%$busqueda%' OR COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%' LIMIT 0,80";
 
        $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));      
     }
@@ -285,7 +312,7 @@ if (isset($_GET["searchterm"]))
 
       // echo "<td>".$fila['COD_INT']. "</td>";
       echo "<td>".$fila['EMPRESA']. "</td>";
-      echo "<td class='centered' >".$fila['COD_AGE']. "<br><a href='untitled-4.php?cod_int=".$fila['COD_INT']."' onclick='popupwindow();' target='pop'>Ver</a></td>";
+      echo "<td class='centered'>".$fila['COD_AGE']."<br><a href='untitled-4.php?cod_int=".$fila['COD_INT']."' onclick='popupwindow();' target='pop'>Ver agencia</a></td>";
       echo "<td>".$fila['NOM_AGE']. "</td>";
       echo "<td>".$fila['TEL_AGE']. "</td>";
       echo "<td>".$fila['HOR_AGE']. "</td>";
@@ -357,7 +384,16 @@ if (isset($_GET["searchterm"]))
     echo ('error'); //fin del if $busqueda <> ""
   }
 
-} //fin del isset
+} //isset
+//else 
+//{
+  ?>
+    <!-- <script language="javascript"> 
+     show(); 
+    </script>  -->
+  <?php
+
+//} 
 
 ?>
 
@@ -370,10 +406,12 @@ if (isset($_GET["searchterm"]))
           <p class="rightt"><a href="http://www.servicio-virtual.com.ve"><span>buscatuagencia.com.ve</span></a></p>
             
     </div>
-    <div class="clr"></div>
+     <div class="clr"></div>
   </div>
-  <div class="clr"></div>
+    <div class="clr"></div>
+ 
  </div>
+
 </body>
 
 
