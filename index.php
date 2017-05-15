@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Encontrar agencias oficinas agentes sucursales de envío - Buscatuagencia.com.ve</title>
-
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link href="styles.css" rel="stylesheet">
 <script type="text/javascript"  src="./scripts.js"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -88,7 +88,7 @@ $(function() {
         </div>
 
         <div class="left">
-        <h1>Búsqueda por empresa de envíos:</h1>
+        <h1>Buscar por empresa de envíos:</h1>
         </div>
         <div class="clr"></div>
           
@@ -396,12 +396,12 @@ if (isset($_GET["searchterm"]))
 //} 
 
 ?>
-
+ 
  <div class="footer">
     <div class="footer_resize">
         
-          <p class="leftt">>© Páginas web desde 2017 BUSCATUAGENCIA.COM.VE Todos los derechos reservados.<br />
-          <a href="index.php"> Inicio </a> | <a href="contactar.html"> Contactar</a>| <a href="sitemap.html"> Mapa del sitio</a></p>
+          <p class="leftt">© Páginas web desde 2017 BUSCATUAGENCIA.COM.VE Todos los derechos reservados.<br />
+          <a href="index.php"> Inicio </a> | <a href="contacto.html"> Contacto |</p>
           
           <p class="rightt"><a href="http://www.servicio-virtual.com.ve"><span>buscatuagencia.com.ve</span></a></p>
             
@@ -409,8 +409,8 @@ if (isset($_GET["searchterm"]))
      <div class="clr"></div>
   </div>
     <div class="clr"></div>
- 
- </div>
+
+</div>
 
 </body>
 

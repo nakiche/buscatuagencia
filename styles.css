@@ -1,7 +1,7 @@
 @charset "utf-8";
 @import url(http://fonts.googleapis.com/css?family=Montserrat+Alternates);
 
-body {margin:0; padding:0 ;width: 100%; height: 100% }
+body {margin:0; padding:0 ;width: 100%; height: 100%;}
 html {padding:0; margin:0; height: 100%}
 a {text-decoration:none;}
 a:hover{text-decoration:underline;} 
@@ -13,13 +13,14 @@ a:hover{text-decoration:underline;}
   background-image: url("images/Freight-Truck-Trailer.jpg");
   background-size: cover;
   background-repeat:no-repeat;
+  overflow-y: hidden; /*check on responsive*/
  }
 
 /*header*/
 .block_header {margin:0 auto; padding:0;}
 .header {margin:0; padding:0; width:960px;}
 /*Logo*/
-.logo {padding:0;  margin:30px 0 0 50px; width:180px; float: left;}
+.logo {padding:0;  margin:30px 0 0 50px; width:180px; float: left; }
 
 
 /*search bar*/
@@ -192,14 +193,14 @@ margin:10px 0 0 231px;
 
 
 /*footer*/
-.footer{margin:0; padding:0;}
-.footer_resize{margin:0 0 0 150px ; padding: 10px 0 10px 0;width:960px; bottom:0; position:fixed;}
+.footer{margin:0; padding:0; width: 75%; margin: 0 auto;  }
+.footer_resize{ margin-bottom: 15px; width: 80%; padding: 0; bottom: 0; position: absolute;}
 .footer p{font: 11px 'Montserrat Alternates'; color:#FFF; }
 .footer a{font: 11px 'Montserrat Alternates'; color:#FFF; text-decoration:none;line-height:2em;}
-.footer p.leftt{ text-align:left;float:left;  padding: 0; margin:18px 0 0 50px; width:530px;}
-.footer p.rightt{ text-align:right;float: right;padding: 0; margin:18px 0 0 0; width:290px;}
+.footer p.leftt{ display: inline-block;text-align:left; padding: 0; margin:0; width:60%;  }
+.footer p.rightt{  display: inline-block; text-align:right; margin: 0; padding: 0;  width:30%;}
 .footer a:hover{text-decoration:underline;}
-.footer span{font: 13px 'Montserrat Alternates'; color:#FFF; text-decoration:none;line-height:2em;}
+.footer span{font: 13px 'Montserrat Alternates'; color:#FFF; text-decoration:none;}
 
 /*results table*/
  table
@@ -374,7 +375,85 @@ text-decoration:underline;
  margin: 15px 45px;
 }
 
+/*contact*/
+.body_resize {  margin:0; padding:0;}
+.body{ width: 960px; margin:0 auto; padding: 0;}
+.body h2{font: 18px 'Montserrat Alternates'; color: #333; margin:0; padding: 5px;}
+.body h2 span{font: 11px Verdana, Geneva, sans-serif; color:#666;}
+.body h3{font:25px 'Montserrat Alternates'; color: black; margin:0 0 15px 0;  padding:15px 5px; border-bottom:1px solid #d7d7d7;}
+.body h3 span{font:normal 14px Verdana, Geneva, sans-serif; color:#666; }
+.body img{ float:left; margin: 10px 5 px; padding:0;}
+.body p{font:normal 12px Verdana, Geneva, sans-serif; color:#666; margin:0; line-height: 1.8em; padding:0; text-align:justify;}
+.body a:hover{text-decoration:underline;}
+.body a{text-decoration:none; color:#0097e7; line-height:1.8em; font: normal 12px Arial, Helvetica,  sans-serif;}
+.port {width:958px; background-color: #fff; float:left; border: solid 1px #ececec; padding: 0; ; margin: 10px 0 20px 0;}
+.port ul li{font:normal 12px Verdana, Geneva, sans-serif; color:#666; margin:0; line-height: 1.8em; padding:0;}
+.port p{margin: 0 10px; text-align:justify;}
+.ed { float:left; padding:0; margin:10px 20px;}
 
+
+.contact_left{width:585px; float:left; padding:10px 0; margin:0;}
+.contact_right{width:280px; float:right;padding:10px 0; margin:0;}
+.contact_right strong{margin-left:10px; line-height:3em;}
+.contact_right img{margin:15px 0 0 px;}
+
+#contactform {margin:0; padding: 5px 10px;}
+#contactform ol{margin:0; padding:0; list-style:none;}
+#contactform li{margin:0; padding:0 ; background:none; border: none; display:block; clear: both;}
+/*#contactform li.buttons{margin 5px 0 5px 0;}*/
+#contactform label{margin 0; padding: 10px 0 15px 0px; width:110px; display: block; color:#605f5f; font:normal 12px Arial, Helvetica, sans-serif; text-transform:capitalize;  float:left}
+#contactform label span{color:#f00;}
+#contactform input{background:#F00; border: 1px solid #e8e8e8; margin: 5px 0; padding:2px; background:#fff; float:left;}
+#contactform textarea { width:410px; border: 1px solid #e8e8e8; margin: 10px 0; padding:2px; background:#fff; float:left;}
+#contactform li button{border:0; padding:0; margin:0;}
+
+#contactform input[type=submit]
+{
+ 
+ margin:10px 5px 5px 110px; 
+ width:126px; 
+ height:36px; 
+ float:left;
+ padding: 3px 3px;
+ background-color: #999;
+ font: 1em  'Montserrat Alternates' ;
+ color: black;
+ 
+}
+
+#contactform input[type=submit]:hover
+{
+ 
+ background: rgba(0,0,0,0);
+ color: black;
+ box-shadow: inset 0 0 0 3px #7c7d7e;
+
+ 
+}
+
+#contactform input[type=reset]
+{
+ margin:10px 5px 5px 20px; 
+ width:126px; 
+ height:36px; 
+ float:left;
+ padding: 3px 3px;
+ background-color: #999;
+ font: 1em  'Montserrat Alternates' ;
+ color: black;
+ 
+}
+
+#contactform input[type=reset]:hover
+{
+ 
+ background: rgba(0,0,0,0);
+ color: black;
+ box-shadow: inset 0 0 0 3px #7c7d7e;
+}
+
+.block_iframe{  margin: 0; padding: 0;}
+.iframe_bg{width:960px;padding:0  auto; margin: 30px auto;}
 
 /*clear*/
 .clr{clear:both; padding:0; margin:0; width:960px;}
