@@ -30,13 +30,17 @@ $(function() {
    });              
 });
 
-  
 </script>
 
 </head>
 
 <body>
- <div class="main"> 
+
+<?php
+$termino="";
+?>
+
+<div class="main"> 
   
   <div class="block_header">
     
@@ -86,7 +90,9 @@ $(function() {
         <div class="error">
         <h2 class="errortext"></h2>
         </div>
-
+        
+        <div class="clr"></div>
+        
         <div class="left">
         <h1>Buscar por empresa de envíos:</h1>
         </div>
@@ -94,48 +100,49 @@ $(function() {
           
         <div class="menu">
           <ul>
-          
-            <li><a href="mrw.html"><img src="images/logomrw.png" width="98" height="43" alt="mrw"></a></li>
-            <li><a href="zoom.html"><img src="images/logozoom.png" width="98" height="36" alt="zoom"></a></li>
-            <li><a href="domesa.html"><img src="images/logodomesa.png" width="98" height="43" alt="domesa"></a></li>
-            <li><a href="tealca.html"><img src="images/logotealca.png" width="98" height="43" alt="tealca"></a></li>
+
+          <?php
+          if (isset($_GET["searchterm"]))
+          {
+              $termino=$_GET["searchterm"];
+          } 
+          ?>
+            
+           <li><a href="mrw.html"><img src="images/logomrw.png" width="98" height="43" alt="mrw"></a></li>
+           <li><a href="zoom.html"><img src="images/logozoom.png" width="98" height="36" alt="zoom"></a></li>
+           <li><a href="domesa.html"><img src="images/logodomesa.png" width="98" height="43" alt="domesa"></a></li>
+           <li><a href="tealca.html"><img src="images/logotealca.png" width="98" height="43" alt="tealca"></a></li> 
 
                                   
           </ul>
        </div>
 
-          <div class="clr"></div>
-    </div>  
-          <div class="clr"></div>
-</div>
+     
 
 
-        <!-- <div class="left2">
+         <div class="left2">
         <h1>Filtrar resultado por empresa de envíos:</h1>
         </div>
         <div class="clr"></div>
 
         <div class="menu2">
           <ul>
-          
-            <li><a href="mrw.html"><img src="images/logomrw.png" width="98" height="43" alt="mrw"></a></li>
-            <li><a href="zoom.html"><img src="images/logozoom.png" width="98" height="36" alt="zoom"></a></li>
-            <li><a href="domesa.html"><img src="images/logodomesa.png" width="98" height="43" alt="domesa"></a></li>
-            <li><a href="tealca.html"><img src="images/logotealca.png" width="98" height="43" alt="tealca"></a></li>
-
-           
+            <li><a href='index.php?filtro=MRW&searchterm=<?php echo $termino;?>'><img src="images/logomrw.png" width="98" height="43" alt="mrw"></a></li>
+            <li><a href='index.php?filtro=ZOOM&searchterm=<?php echo $termino;?>'><img src="images/logozoom.png" width="98" height="36" alt="zoom"></a></li>
+            <li><a href='index.php?filtro=DOMESA&searchterm=<?php echo $termino;?>'><img src="images/logodomesa.png" width="98" height="43" alt="domesa"></a></li>
+            <li><a href='index.php?filtro=TEALCA&searchterm=<?php echo $termino;?>'><img src="images/logotealca.png" width="98" height="43" alt="tealca"></a></li>         
                           
           </ul>
-        </div>-->
+        </div>
 
     
 
- 
+
     <div class="clr"></div>
-  </div>
+    </div>
     <div class="clr"></div>
-</div> 
-    
+  </div> 
+</div>
     
   
   
@@ -151,23 +158,23 @@ function test_input($data)
   return $data;
 }
 
+  
+
 
 if (isset($_GET["searchterm"]))
-{  
-  
-  ?>
-    <!-- <script language="javascript"> 
+{ 
+    ?>
+    <script language="javascript"> 
      hide(); 
-    </script>  -->
-  <?php
+    </script> 
+  <?php   
 
   $busqueda = test_input($_GET["searchterm"]);
-  
-    //$busqueda=$_GET["searchterm"];
-    //$busqueda= ltrim($busqueda);
-  
-    
-    //usamos la conexion desde otro archivo
+
+      $trozos=explode(" ",$busqueda); 
+      $numero=count($trozos); 
+
+  //usamos la conexion desde otro archivo
     require ("datos_conexion.php");
   
     //conexion bdd
@@ -186,30 +193,389 @@ if (isset($_GET["searchterm"]))
     //para incluir los tildes 
     mysqli_set_charset($conexion, "utf8");  
 
-    //Paginación
-    $tamano_paginas=3;
-
-    if(isset($_GET["pagina"]))
-    {
-      
-     $pagina=$_GET["pagina"];      
      
+  if(!empty($_GET["filtro"]))  /*valido si me estan mandando un filtro*/
+    {
+      $filtro=$_GET['filtro'];   
+      switch($_GET["filtro"]) 
+      {
+
+        case "MRW":
+
+          
+      if ($numero==1) 
+      { 
+       
+      //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
+      
+       $sql_total="SELECT * FROM agencias WHERE EMPRESA = 'MRW' AND (COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%') LIMIT 0,80";
+
+       $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));      
+      }
+      else
+      {  
+      
+      
+      $sql_total="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE)
+      FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) AND EMPRESA = 'MRW' LIMIT 0,80";
+      }  
+      $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));
+
+      $tamano_paginas=3;
+
+      if(isset($_GET["pagina"]))
+      {
+      
+      $pagina=$_GET["pagina"];      
+     
+      }
+      else
+      {
+      $pagina=1;
+      } 
+
+  
+   
+      //paginación  
+      $total_paginas=ceil($num_rows_total/$tamano_paginas);
+
+      $empezar_desde=($pagina-1)*$tamano_paginas; 
+
+
+
+      //consulta segun numero de palabras
+
+      if ($numero==1) 
+      { 
+      //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
+
+      $consulta="SELECT * FROM agencias WHERE EMPRESA = 'MRW' AND (COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%') LIMIT $empezar_desde,$tamano_paginas";
+
+       $num_rows = mysqli_num_rows(mysqli_query($conexion,$consulta));
+
+      if($num_rows==0)
+      {
+
+        ?>
+          <script language="javascript"> 
+            validacion3(); 
+          </script> 
+        <?php
+
+      }
+  
     }
     else
     {
-      $pagina=1;
+      //$consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
+      //FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE )
+      //ORDER BY relevancia";
+
+      $consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
+      FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) AND EMPRESA = 'MRW' HAVING relevancia > 0.2 ORDER BY relevancia DESC LIMIT $empezar_desde,$tamano_paginas";
+
+      //$consulta= "SELECT * FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE)";
+      
+      $num_rows = mysqli_num_rows(mysqli_query($conexion,$consulta));
+
+      if($num_rows==0)
+      {
+
+        ?>
+          <script language="javascript"> 
+            validacion3(); 
+          </script> 
+
+        <?php
+      }
+    
     }
+        
+         
+      break;
+    
+      case "ZOOM":
 
-  //si existe algo en la busqueda 
-    if ($busqueda<>'')
-    { 
-    //CUENTA EL NUMERO DE PALABRAS 
-      $trozos=explode(" ",$busqueda); 
-      $numero=count($trozos); 
-
-    //$reg_query="SELECT * FROM agencias WHERE EMPRESA LIKE '%$busqueda%' OR COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%' LIMIT 0,80" ; 
-    //Paginación    
     if ($numero==1) 
+      { 
+       
+      //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
+      
+       $sql_total="SELECT * FROM agencias WHERE EMPRESA = 'ZOOM' AND (COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%') LIMIT 0,80";
+
+       $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));      
+      }
+      else
+      {  
+      
+      
+      $sql_total="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE)
+      FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) AND EMPRESA = 'ZOOM' LIMIT 0,80";
+      }  
+      $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));
+
+      $tamano_paginas=3;
+
+      if(isset($_GET["pagina"]))
+      {
+      
+      $pagina=$_GET["pagina"];      
+     
+      }
+      else
+      {
+      $pagina=1;
+      } 
+
+  
+   
+      //paginación  
+      $total_paginas=ceil($num_rows_total/$tamano_paginas);
+
+      $empezar_desde=($pagina-1)*$tamano_paginas; 
+
+
+
+      //consulta segun numero de palabras
+
+      if ($numero==1) 
+      { 
+      //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
+
+      $consulta="SELECT * FROM agencias WHERE EMPRESA = 'ZOOM' AND (COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%') LIMIT $empezar_desde,$tamano_paginas";
+
+       $num_rows = mysqli_num_rows(mysqli_query($conexion,$consulta));
+
+      if($num_rows==0)
+      {
+
+        ?>
+          <script language="javascript"> 
+            validacion3(); 
+          </script> 
+        <?php
+
+      }
+  
+    }
+    else
+    {
+      //$consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
+      //FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE )
+      //ORDER BY relevancia";
+
+      $consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
+      FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) AND EMPRESA = 'ZOOM' HAVING relevancia > 0.2 ORDER BY relevancia DESC LIMIT $empezar_desde,$tamano_paginas";
+
+      //$consulta= "SELECT * FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE)";
+      
+      $num_rows = mysqli_num_rows(mysqli_query($conexion,$consulta));
+
+      if($num_rows==0)
+      {
+
+        ?>
+          <script language="javascript"> 
+            validacion3(); 
+          </script> 
+
+        <?php
+      }
+    
+    }  
+
+
+
+      break;  
+
+      case "DOMESA":
+    if ($numero==1) 
+      { 
+       
+      //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
+      
+       $sql_total="SELECT * FROM agencias WHERE EMPRESA = 'DOMESA' AND (COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%') LIMIT 0,80";
+
+       $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));      
+      }
+      else
+      {  
+      
+      
+      $sql_total="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE)
+      FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) AND EMPRESA = 'DOMESA' LIMIT 0,80";
+      }  
+      $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));
+
+      $tamano_paginas=3;
+
+      if(isset($_GET["pagina"]))
+      {
+      
+      $pagina=$_GET["pagina"];      
+     
+      }
+      else
+      {
+      $pagina=1;
+      } 
+
+  
+   
+      //paginación  
+      $total_paginas=ceil($num_rows_total/$tamano_paginas);
+
+      $empezar_desde=($pagina-1)*$tamano_paginas; 
+
+
+
+      //consulta segun numero de palabras
+
+      if ($numero==1) 
+      { 
+      //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
+
+      $consulta="SELECT * FROM agencias WHERE EMPRESA = 'DOMESA' AND (COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%') LIMIT $empezar_desde,$tamano_paginas";
+
+       $num_rows = mysqli_num_rows(mysqli_query($conexion,$consulta));
+
+      if($num_rows==0)
+      {
+
+        ?>
+          <script language="javascript"> 
+            validacion3(); 
+          </script> 
+        <?php
+
+      }
+  
+    }
+    else
+    {
+      //$consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
+      //FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE )
+      //ORDER BY relevancia";
+
+      $consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
+      FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) AND EMPRESA = 'DOMESA' HAVING relevancia > 0.2 ORDER BY relevancia DESC LIMIT $empezar_desde,$tamano_paginas";
+
+      //$consulta= "SELECT * FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE)";
+      
+      $num_rows = mysqli_num_rows(mysqli_query($conexion,$consulta));
+
+      if($num_rows==0)
+      {
+
+        ?>
+          <script language="javascript"> 
+            validacion3(); 
+          </script> 
+
+        <?php
+      }
+    
+    }  
+
+      break;  
+
+      case "TEALCA":
+
+    if ($numero==1) 
+      { 
+       
+      //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
+      
+       $sql_total="SELECT * FROM agencias WHERE EMPRESA = 'TEALCA' AND (COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%') LIMIT 0,80";
+
+       $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));      
+      }
+      else
+      {  
+      
+      
+      $sql_total="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE)
+      FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) AND EMPRESA = 'TEALCA' LIMIT 0,80";
+      }  
+      $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));
+
+      $tamano_paginas=3;
+
+      if(isset($_GET["pagina"]))
+      {
+      
+      $pagina=$_GET["pagina"];      
+     
+      }
+      else
+      {
+      $pagina=1;
+      } 
+
+  
+   
+      //paginación  
+      $total_paginas=ceil($num_rows_total/$tamano_paginas);
+
+      $empezar_desde=($pagina-1)*$tamano_paginas; 
+
+
+
+      //consulta segun numero de palabras
+
+      if ($numero==1) 
+      { 
+      //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
+
+      $consulta="SELECT * FROM agencias WHERE EMPRESA = 'TEALCA' AND (COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%') LIMIT $empezar_desde,$tamano_paginas";
+
+       $num_rows = mysqli_num_rows(mysqli_query($conexion,$consulta));
+
+      if($num_rows==0)
+      {
+
+        ?>
+          <script language="javascript"> 
+            validacion3(); 
+          </script> 
+        <?php
+
+      }
+  
+    }
+    else
+    {
+      //$consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
+      //FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE )
+      //ORDER BY relevancia";
+
+      $consulta="SELECT *, MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE) as relevancia
+      FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) AND EMPRESA = 'TEALCA' HAVING relevancia > 0.2 ORDER BY relevancia DESC LIMIT $empezar_desde,$tamano_paginas";
+
+      //$consulta= "SELECT * FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE)";
+      
+      $num_rows = mysqli_num_rows(mysqli_query($conexion,$consulta));
+
+      if($num_rows==0)
+      {
+
+        ?>
+          <script language="javascript"> 
+            validacion3(); 
+          </script> 
+
+        <?php
+      }
+    
+    }  
+
+      break;  
+
+     }
+  }
+  else //isset existe un filtro
+  {
+     if ($numero==1) 
     { 
       //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
       //$sql_total= $reg_query; // query en forma de variable
@@ -223,14 +589,27 @@ if (isset($_GET["searchterm"]))
       FROM agencias WHERE MATCH (EMPRESA,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$busqueda' IN BOOLEAN MODE ) LIMIT 0,80";
     }  
       $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));
+  
 
+  
+    //Paginación
+    $tamano_paginas=3;
 
+    if(isset($_GET["pagina"]))
+    {
+      
+     $pagina=$_GET["pagina"];      
+     
+    }
+    else
+    {
+      $pagina=1;
+    }
+         
     //paginación  
     $total_paginas=ceil($num_rows_total/$tamano_paginas);
 
     $empezar_desde=($pagina-1)*$tamano_paginas; 
-
-
 
     //consulta segun numero de palabras
 
@@ -279,7 +658,8 @@ if (isset($_GET["searchterm"]))
       }
     
     }
-    
+  
+  } //else if isset existe un filtro
       
     $resulados= mysqli_query($conexion,$consulta);
    
@@ -338,7 +718,8 @@ if (isset($_GET["searchterm"]))
 
        echo "<p>Página $pagina  de  $total_paginas </p>";
        
-       
+    if(empty($_GET["filtro"]))  //valido si existe un filtro
+    {
 
        if ($pagina !=1)
        {
@@ -364,6 +745,37 @@ if (isset($_GET["searchterm"]))
           echo "<a href='index.php?searchterm=$busqueda&pagina=".($pagina+1)."'><img src='images/der.gif' border='0'></a>";
        }      
 
+    }
+    else //si hay un filtro
+    {
+
+         if ($pagina !=1)
+       {
+            
+            echo "<a href='index.php?searchterm=$busqueda&filtro=$filtro&pagina=".($pagina-1)."'><img src='images/izq.gif' border='0'></a>";
+       }                                                     
+
+      for ($i=1;$i<=$total_paginas;$i++)
+      { 
+        if ($pagina == $i) 
+          //si muestro el índice de la página actual, no coloco enlace 
+      
+
+          echo "<span>$pagina</span>"; 
+        else 
+          //si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
+          //echo "<a href='index.php?pagina=" . $i . "&criterio=" . $txt_criterio . "'>" . $i . "</a> "; 
+
+          echo "<a href='index.php?searchterm=$busqueda&filtro=$filtro&pagina=$i'>  $i </a>";
+      }
+
+      if ($pagina !=$total_paginas)
+       {
+          echo "<a href='index.php?searchterm=$busqueda&filtro=$filtro&pagina=".($pagina+1)."'><img src='images/der.gif' border='0'></a>";
+       }      
+
+
+     }// isset get filtro
 
     }
        ?>
@@ -377,23 +789,19 @@ if (isset($_GET["searchterm"]))
     //cerramos la conexiòn
     mysqli_close($conexion);
 
-  }
-  else
-  {
+  
 
-    echo ('error'); //fin del if $busqueda <> ""
-  }
 
-} //isset
-//else 
-//{
+} 
+else //isset existe el searchterm
+{
   ?>
-    <!-- <script language="javascript"> 
+    <script language="javascript"> 
      show(); 
-    </script>  -->
+    </script> 
   <?php
 
-//} 
+} 
 
 ?>
  

@@ -20,7 +20,7 @@ a:hover{text-decoration:underline;}
 .block_header {margin:0 auto; padding:0;}
 .header {margin:0; padding:0; width:960px;}
 /*Logo*/
-.logo {padding:0;  margin:30px 0 0 50px; width:180px; float: left; }
+.logo {padding:0;  margin:10px 0 0 50px; width:180px; float: left; }
 
 
 /*search bar*/
@@ -66,7 +66,7 @@ a:hover{text-decoration:underline;}
 #field {
   padding: 0;
   display:flex;
-  margin: 30px 0 0 0;
+  margin: 10px 0 0 0;
   width:600px;
   float:left;
   flex-direction:row;
@@ -155,34 +155,37 @@ margin:10px 0 0 231px;
 
 }
 
-.left{margin:10px 0 0 230px; padding:0; text-align:left; float:left;width:730px;}
-/*.left2{margin:10px 0 0 230px; padding:0; text-align:left; float:left;width:730px;}*/
+.left{margin:0 0 0 230px; padding:0; text-align:left; float:left;width:730px; display: none;}
+
 /*menu*/  
-.menu{padding:0; margin:0 0 0 210px;  float:left; width: 730px;}
+.menu{padding:0; margin:0 0 0 210px;  float:left; width: 730px; display: none;}
 .menu ul{ text-align:left; padding:0; margin:0; list-style:none;border:0 ; float:left;}
 .menu ul li{float:left; margin: 0; padding:0; border:0;}
 .menu img
 { 
-  padding:5px 10px;
+  padding:0 10px;
   -webkit-transition: -webkit-transform 0.4s linear;
 }
 .menu img:hover
 {
   transform: scale(1.2, 1.5);
 }
-/*menu*/
-/*.menu2{padding:0; margin:0 0 0 210px;  float:left; width: 730px; }
+
+.left2{margin:0 0 0 230px; padding:0; text-align:left; float:left;width:730px; display: none;}
+
+/*menu 2*/
+.menu2{padding:0; margin:0 0 0 210px;  float:left; width: 730px; display: none; }
 .menu2 ul{ text-align:left; padding:0; margin:0; list-style:none;border:0 ; float:left;}
 .menu2 ul li{float:left; margin: 0; padding:0; border:0;}
 .menu2 img
 { 
-  padding:5px 10px;
+  padding:0px 10px;
   -webkit-transition: -webkit-transform 0.4s linear;
 }
 .menu2 img:hover
 {
-  transform: scale(1.2, 1.5)
-}*/
+  transform: scale(1.2, 1.5);
+}
 
 /*FBG POR EMPRESAS EMPRESAS*/
 .FBG_resize2{margin:0 ; padding: 0; width:960px;}
@@ -252,7 +255,7 @@ margin: 0 auto;
 .tabla p
 {
 font: 0.7em 'Montserrat Alternates';
-margin:3px 3px;
+margin:0;
 padding:0;
 }
 
@@ -333,6 +336,7 @@ text-decoration:underline;
 
 /*popup*/
 
+
 .popup-heading
 {
     color: #ffffff;
@@ -348,20 +352,19 @@ text-decoration:underline;
   
 }
 
-
-
 .popup-body-box
 {
-  padding: 5px 15px ;
+  padding: 5px 25px;
   width: 45%;
-  display: inline-block;
-  margin: 5px 5px;
+  display: block;
+  float: left;
 }
 
 .popup-body-box span
 {
   font: 1.4em 'Montserrat Alternates';
   color: #006dd8;
+
 }
 
 .popup-body-box p
@@ -372,17 +375,18 @@ text-decoration:underline;
 
 .popup-body-box img
 {
- margin: 15px 45px;
+ float: right;
+ margin-top: 8px;
 }
 
 /*contact*/
 .body_resize {  margin:0; padding:0;}
 .body{ width: 960px; margin:0 auto; padding: 0;}
-.body h2{font: 18px 'Montserrat Alternates'; color: #333; margin:0; padding: 5px;}
+.body h2{font: 18px 'Montserrat Alternates'; color: #333; margin:0; padding:10px 0;}
 .body h2 span{font: 11px Verdana, Geneva, sans-serif; color:#666;}
 .body h3{font:25px 'Montserrat Alternates'; color: black; margin:0 0 15px 0;  padding:15px 5px; border-bottom:1px solid #d7d7d7;}
 .body h3 span{font:normal 14px Verdana, Geneva, sans-serif; color:#666; }
-.body img{ float:left; margin: 10px 5 px; padding:0;}
+.body img{ float:left; margin: 10px 5 px; padding:0; border: 1px solid #d7d7d7;}
 .body p{font:normal 12px Verdana, Geneva, sans-serif; color:#666; margin:0; line-height: 1.8em; padding:0; text-align:justify;}
 .body a:hover{text-decoration:underline;}
 .body a{text-decoration:none; color:#0097e7; line-height:1.8em; font: normal 12px Arial, Helvetica,  sans-serif;}
@@ -394,14 +398,14 @@ text-decoration:underline;
 
 .contact_left{width:585px; float:left; padding:10px 0; margin:0;}
 .contact_right{width:280px; float:right;padding:10px 0; margin:0;}
-.contact_right strong{margin-left:10px; line-height:3em;}
+.contact_right strong{margin:0; line-height:3em;}
 .contact_right img{margin:15px 0 0 px;}
 
-#contactform {margin:0; padding: 5px 10px;}
+#contactform {margin:0; padding: 0;}
 #contactform ol{margin:0; padding:0; list-style:none;}
 #contactform li{margin:0; padding:0 ; background:none; border: none; display:block; clear: both;}
 /*#contactform li.buttons{margin 5px 0 5px 0;}*/
-#contactform label{margin 0; padding: 10px 0 15px 0px; width:110px; display: block; color:#605f5f; font:normal 12px Arial, Helvetica, sans-serif; text-transform:capitalize;  float:left}
+#contactform label{margin 0; padding: 10px 0 15px 0px; width:110px; display: block; color:#605f5f; font:normal 12px Verdana, Geneva, sans-serif; text-transform:capitalize;  float:left}
 #contactform label span{color:#f00;}
 #contactform input{background:#F00; border: 1px solid #e8e8e8; margin: 5px 0; padding:2px; background:#fff; float:left;}
 #contactform textarea { width:410px; border: 1px solid #e8e8e8; margin: 10px 0; padding:2px; background:#fff; float:left;}

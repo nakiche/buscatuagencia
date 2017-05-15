@@ -55,12 +55,14 @@
 	//while($fila=mysqli_fetch_object($resulados)){	
 		?>
 			
-		<div>
+		<div class="main-popup">
+
 		 	<div class="popup-heading">
 		 	<h1>Oficina o sucursal</h1>
 		 	</div>
-
+		 	
 		 	<div class="popup-body">
+		 	
 		  		<div class="popup-body-box">	
 		 			<span><strong><?php echo $fila['NOM_AGE']?></strong></span>
 		 			<p><strong>EMPRESA: </strong><?php echo $fila['EMPRESA']?></p>
@@ -75,7 +77,6 @@
 		  		<div class="popup-body-box">
 		  			<img src="images/<?php echo $fila['IMG_AGE']?>" width="440" height="250" alt="Logo">	
 		  		</div>
-
 
 			</div>	
 

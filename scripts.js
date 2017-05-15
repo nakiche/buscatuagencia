@@ -28,7 +28,7 @@
 
 function popupwindow(url, title, w, h) 
 	{
-    		var w = 1100;
+    		var w = 1040;
     		var h = 370;
     	 	var left = Number((screen.width/2)-(w/2));
    		    var tops = Number((screen.height/2)-(h/2));
@@ -62,9 +62,10 @@ function validacion()
 				return false;
     		 	 
 
-    		 }	 	
+    		 }
 
     		 
+    		    		 
 	}
 
 
@@ -97,28 +98,31 @@ function validacion3()
 		
 }
 
-// function hide()
-// {
 
-// 					$(document).ready(function(){
-// 					$(".left").css('display','none');
-// 					$(".menu").css('display','none');
-// 					$(".left2").css('display','block');
-// 					$(".menu2").css('display','block');
-// 					});	
 
-// }
 
-// function show()
-// {
+function hide()
+{
 
-// 					$(document).ready(function(){
-// 					$(".left").css('display','block');
-// 					$(".menu").css('display','block');
-// 					$(".left2").css('display','none');
-// 					$(".menu2").css('display','none');
-// 					});	
+					$(document).ready(function(){
+					$(".left").css('display','none');
+					$(".menu").css('display','none');
+					$(".left2").css('display','block');
+					$(".menu2").css('display','block');
+					});	
 
-// }
+}
+
+function show()
+{
+
+					$(document).ready(function(){
+					$(".left").css('display','block');
+					$(".menu").css('display','block');
+					$(".left2").css('display','none');
+					$(".menu2").css('display','none');
+					});	
+
+}
 
 
