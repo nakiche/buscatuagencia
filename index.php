@@ -121,7 +121,7 @@ $termino="";
 
 
          <div class="left2">
-        <h1>Filtrar resultado por empresa de envíos:</h1>
+        <h1>Filtrar el resultado por empresa de envíos:</h1>
         </div>
         <div class="clr"></div>
 
@@ -671,7 +671,7 @@ if (isset($_GET["searchterm"]))
         
       <?php
         
-        echo "<p>Cerca de: $num_rows_total resultados</p>" ; //paginación
+        echo "<p>Cerca de $num_rows_total resultados para: <strong>$busqueda</strong></p>" ; //paginación
 
         echo "<table class='tabla'><tr>";      //creamos la tabla
         echo "<th>Empresa</th>";
@@ -703,6 +703,7 @@ if (isset($_GET["searchterm"]))
 
       echo "</table>";                            //cerramos la tabla
 
+      
      
 
     //-------------------paginacion
@@ -710,20 +711,21 @@ if (isset($_GET["searchterm"]))
     //muestro los distintos índices de las páginas, si es que hay varias páginas 
     if ($total_paginas > 1)
     { 
-      
+      echo "<p>Página $pagina  de  $total_paginas </p>";
        ?>
 
        <div class="pagination">        
        <?php 
 
-       echo "<p>Página $pagina  de  $total_paginas </p>";
+       
        
     if(empty($_GET["filtro"]))  //valido si existe un filtro
     {
 
        if ($pagina !=1)
        {
-          echo "<a href='index.php?searchterm=$busqueda&pagina=".($pagina-1)."'><img src='images/izq.gif' border='0'></a>";
+          //echo "<a class='different' href='index.php?searchterm=$busqueda&pagina=".($pagina-1)."'><img src='images/izq.gif' border='0'></a>";
+          echo "<a href='index.php?searchterm=$busqueda&pagina=".($pagina-1)."'><strong><<</strong></a>";
        }                                                     
 
       for ($i=1;$i<=$total_paginas;$i++)
@@ -742,7 +744,8 @@ if (isset($_GET["searchterm"]))
 
       if ($pagina !=$total_paginas)
        {
-          echo "<a href='index.php?searchterm=$busqueda&pagina=".($pagina+1)."'><img src='images/der.gif' border='0'></a>";
+          //echo "<a class='different' href='index.php?searchterm=$busqueda&pagina=".($pagina+1)."'><img src='images/der.gif' border='0'></a>";
+           echo "<a href='index.php?searchterm=$busqueda&pagina=".($pagina+1)."'><strong>>></strong></a>";
        }      
 
     }
@@ -752,7 +755,7 @@ if (isset($_GET["searchterm"]))
          if ($pagina !=1)
        {
             
-            echo "<a href='index.php?searchterm=$busqueda&filtro=$filtro&pagina=".($pagina-1)."'><img src='images/izq.gif' border='0'></a>";
+            echo "<a href='index.php?searchterm=$busqueda&filtro=$filtro&pagina=".($pagina-1)."'><strong><<</strong></a>";
        }                                                     
 
       for ($i=1;$i<=$total_paginas;$i++)
@@ -771,7 +774,7 @@ if (isset($_GET["searchterm"]))
 
       if ($pagina !=$total_paginas)
        {
-          echo "<a href='index.php?searchterm=$busqueda&filtro=$filtro&pagina=".($pagina+1)."'><img src='images/der.gif' border='0'></a>";
+          echo "<a href='index.php?searchterm=$busqueda&filtro=$filtro&pagina=".($pagina+1)."'><strong><<</strong></a>";
        }      
 
 

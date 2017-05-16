@@ -282,29 +282,52 @@ font: 0.9em 'Montserrat Alternates';
 text-decoration:underline;
 } 
 
+.tabla p>strong
+{
+font: 1.3em 'Montserrat Alternates';
+margin:0;
+padding:0; 
+}
 .pagination
 {
 width:960px;  
 text-align: center;
 margin: 0 auto;
+position: fixed;
+bottom: 60px;
 
 }
 
-.pager a
-{
-  font: 0.9em 'Montserrat Alternates';
-margin:5px 5px;
-padding:0;
-text-decoration: none;  
-color: #000;
-}
 .pagination a
 {
-font: 0.9em 'Montserrat Alternates';
-margin:5px 5px;
-padding:0;
+font: 0.7em 'Montserrat Alternates';
+margin:0;
+padding:4px 8px;
 text-decoration: none;  
 color: #000;
+border: 1px solid #ddd;
+background-color: #fff;
+}
+
+.pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.pagination span
+{
+font: 0.7em 'Montserrat Alternates';
+margin:0;
+padding:4px 8px;
+text-decoration: none;  
+color: #FFF;
+border: 1px solid #ddd;
+background-color: rgb(26, 188, 156)
 }
 
 .pagination p
@@ -315,18 +338,10 @@ padding:0;
 text-align: justify;
 }
 
-.pagination span
-{
-font: 0.9em 'Montserrat Alternates';
-margin:3px 3px;
-padding:0;
-text-decoration: underline;  
-color: blue;
-}
-
 .pagination a:hover
 {
-text-decoration:underline;
+text-decoration:none;
+background-color: #ddd;
 } 
 
 .centered
