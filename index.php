@@ -3,6 +3,13 @@
 <head>
 <meta charset="utf-8">
 <title>Encontrar agencias oficinas agentes sucursales de envío - Buscatuagencia.com.ve</title>
+<meta property="og:image" content="/>
+<meta property="og:image:width" content="1500" /> 
+<meta property="og:image:height" content="574" />
+<meta name="description" content="Encuetra tu agencia o sucursal de envío en Venezuela"/>
+<meta name="keywords" content="Agencias de envío, sucursales de envío, oficinas de envío, Mrw, Zoom, Domesa, Tealca, encuentra tu agencia, Venezuela"/>
+<link href='images/favicon.ico' rel='shortcut icon' type='image/png'>
+
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link href="styles.css" rel="stylesheet">
 <script type="text/javascript"  src="./scripts.js"></script> 
@@ -163,10 +170,10 @@ function test_input($data)
 
 if (isset($_GET["searchterm"]))
 { 
-    ?>
-    <script language="javascript"> 
-     hide(); 
-    </script> 
+  ?>
+  <script language="javascript"> 
+  hide(); 
+  </script> 
   <?php   
 
   $busqueda = test_input($_GET["searchterm"]);
@@ -774,7 +781,7 @@ if (isset($_GET["searchterm"]))
 
       if ($pagina !=$total_paginas)
        {
-          echo "<a href='index.php?searchterm=$busqueda&filtro=$filtro&pagina=".($pagina+1)."'><strong><<</strong></a>";
+          echo "<a href='index.php?searchterm=$busqueda&filtro=$filtro&pagina=".($pagina+1)."'><strong>>></strong></a>";
        }      
 
 
