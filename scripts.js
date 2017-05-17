@@ -23,9 +23,6 @@
 //         };
 // };
 
-
-
-
 function popupwindow(url, title, w, h) 
 	{
     		var w = 1040;

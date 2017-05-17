@@ -21,6 +21,8 @@ a:hover{text-decoration:underline;}
 .header {margin:0; padding:0; width:960px;}
 /*Logo*/
 .logo {padding:0;  margin:10px 0 0 50px; width:180px; float: left; }
+/*Páginas independientes*/
+.logo2 {padding:0;  margin:10px 0 0 0; width:350px; float: left;}
 
 
 /*search bar*/
@@ -191,7 +193,7 @@ margin:10px 0 0 231px;
 .FBG_resize2{margin:0 ; padding: 0; width:960px;}
 .FBG_resize2 h1{font: 22px  'Montserrat Alternates'; color: #FFF;}
 .leftt{margin:25px 0 0 230px; padding:0; text-align:left; width:300px; float:left;}
-.logo2 {padding:0;  margin:30px 0 0 0; width:350px; float: left;}
+
 
 
 

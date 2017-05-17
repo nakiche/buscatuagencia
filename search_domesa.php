@@ -29,15 +29,15 @@
   if ($numero==1) 
   { 
 
-  $consulta = "SELECT * FROM agencias WHERE EMPRESA LIKE '%$term%' 
-  OR COD_AGE LIKE '%$term%' OR NOM_AGE LIKE '%$term%' OR NOM_AGE LIKE '%$term%' OR DIR_AGE LIKE '%$term%' OR EST_AGE LIKE '%$term%' OR CIU_AGE LIKE '%$term%' LIMIT 0,10";
+  $consulta = "SELECT * FROM agencias WHERE EMPRESA = 'DOMESA' AND (EMPRESA LIKE '%$term%' 
+  OR COD_AGE LIKE '%$term%' OR NOM_AGE LIKE '%$term%' OR NOM_AGE LIKE '%$term%' OR DIR_AGE LIKE '%$term%' OR EST_AGE LIKE '%$term%' OR CIU_AGE LIKE '%$term%') LIMIT 0,10";
 
   }
   else //si tiene mas de una palabra hacemos la consulta sql con MATCH AGAINST 
   { 
 
   $consulta="SELECT *, MATCH (EMPRESA,COD_AGE,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$term' IN BOOLEAN MODE) as relevancia
-    FROM agencias WHERE MATCH (EMPRESA,COD_AGE,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$term' IN BOOLEAN MODE ) HAVING relevancia > 0.2 ORDER BY relevancia DESC LIMIT 0,10";
+    FROM agencias WHERE MATCH (EMPRESA,COD_AGE,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$term' IN BOOLEAN MODE ) AND EMPRESA = 'DOMESA' HAVING relevancia > 0.2 ORDER BY relevancia DESC LIMIT 0,10";
   }    
   
   $resultado = mysqli_query($conexion, $consulta); //Ejecución de la consulta
