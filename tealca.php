@@ -68,7 +68,7 @@ $(function() {
             
           
             <div class="logo2">
-              <a href="http://www.servicio-virtual.com.ve"><img src="images/logotealca1.png" height="80" width="152" border="0" alt="logo"></a>
+              <a><img src="images/logotealca1.png" height="80" width="152" border="0" alt="logo"></a>
             </div>
              
             <div class="clr"></div>
@@ -226,7 +226,7 @@ if (isset($_GET["searchterm"]))
       if ($pagina !=1)
       {
         //echo "<a class='different' href='index.php?searchterm=$busqueda&pagina=".($pagina-1)."'><img src='images/izq.gif' border='0'></a>";
-        echo "<a href='mrw.php?searchterm=$busqueda&pagina=".($pagina-1)."'><strong><<</strong></a>";
+        echo "<a href='tealca.php?searchterm=$busqueda&pagina=".($pagina-1)."'><strong><<</strong></a>";
       }                                                     
 
       for ($i=1;$i<=$total_paginas;$i++)
@@ -236,12 +236,12 @@ if (isset($_GET["searchterm"]))
           echo "<span>$pagina</span>"; 
         else 
           //si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
-          echo "<a href='mrw.php?searchterm=$busqueda&pagina=$i'>  $i </a>";
+          echo "<a href='tealca.php?searchterm=$busqueda&pagina=$i'>  $i </a>";
       }
 
       if ($pagina !=$total_paginas)
       {
-        echo "<a href='mrw.php?searchterm=$busqueda&pagina=".($pagina+1)."'><strong>>></strong></a>";
+        echo "<a href='tealca.php?searchterm=$busqueda&pagina=".($pagina+1)."'><strong>>></strong></a>";
       }      
 
     }

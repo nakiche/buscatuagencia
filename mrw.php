@@ -68,7 +68,7 @@ $(function() {
             
           
             <div class="logo2">
-              <a href="http://www.servicio-virtual.com.ve"><img src="images/logomrw1.png" height="47" width="156" border="0" alt="logo"></a>
+              <a><img src="images/logomrw1.png" height="47" width="156" border="0" alt="logo"></a>
             </div>
              
             <div class="clr"></div>
