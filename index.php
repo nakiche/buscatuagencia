@@ -48,19 +48,20 @@ $(function() {
     <div class="header">
     	
       <div class="logo">
-        <a href="./index.php"><img src="images/logo_tuagecia.png" width="160" height="59" border="0" alt="logo"></a>
+        <a href="./index.php"><img src="images/logo_tuagecia.png" border="0" alt="logo"></a>
       </div>
   
-
-      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" onsubmit="return validacion();">
-        <div class="ui-widget" id="field">
+      <div class="entrada">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" onsubmit="return validacion();">
+          <div class="ui-widget" id="field">
          <!-- <label for="tags">Tags: </label> -->
          <!-- <input type="text" id="tags"> -->
-        <input type="text" id="searchterm" name="searchterm" placeholder="Ingrese una o más palabras relacionadas a la agencia o sucursal"  onkeypress="validacion2();" onclick="validacion2()";>
-        <button type="submit" id="search">Buscar!</button>
+          <input type="text" id="searchterm" name="searchterm" placeholder="Ingrese una o más palabras relacionadas a la agencia o sucursal"  onkeypress="validacion2();" onclick="validacion2()";>
+          <button type="submit" id="search">Buscar!</button>
        <!-- <input id="tags"> -->
-        </div>
-	    </form>
+          </div>
+	      </form>
+      </div>
 
     </div> 
   </div>
@@ -85,7 +86,7 @@ $(function() {
     <div class="FBG_resize">
 
         <!-- Mensaje de la busqueda instantanea con jquery-->
-      <div id="resultadoBusqueda"></div>
+      <!-- <div id="resultadoBusqueda"></div> -->
 
           <!-- Mensajes de error -->
       <div class="error">
@@ -101,10 +102,10 @@ $(function() {
           
       <div class="menu">
         <ul>         
-          <li><a href="mrw.php"><img src="images/logomrw.png" width="98" height="43" alt="mrw"></a></li>
-          <li><a href="zoom.php"><img src="images/logozoom.png" width="98" height="36" alt="zoom"></a></li>
-          <li><a href="domesa.php"><img src="images/logodomesa.png" width="98" height="43" alt="domesa"></a></li>
-          <li><a href="tealca.php"><img src="images/logotealca.png" width="98" height="43" alt="tealca"></a></li> 
+          <li><a href="mrw.php"><img src="images/logomrw.png"  alt="mrw"></a></li>
+          <li><a href="zoom.php"><img src="images/logozoom.png"  alt="zoom"></a></li>
+          <li><a href="domesa.php"><img src="images/logodomesa.png"  alt="domesa"></a></li>
+          <li><a href="tealca.php"><img src="images/logotealca.png"  alt="tealca"></a></li> 
         </ul>
       </div>
 
@@ -123,10 +124,10 @@ $(function() {
       
       <div class="menu2">
         <ul>
-          <li><a href='index.php?filtro=MRW&searchterm=<?php echo $termino;?>'><img src="images/logomrw.png" width="98" height="43" alt="mrw"></a></li>
-          <li><a href='index.php?filtro=ZOOM&searchterm=<?php echo $termino;?>'><img src="images/logozoom.png" width="98" height="36" alt="zoom"></a></li>
-          <li><a href='index.php?filtro=DOMESA&searchterm=<?php echo $termino;?>'><img src="images/logodomesa.png" width="98" height="43" alt="domesa"></a></li>
-          <li><a href='index.php?filtro=TEALCA&searchterm=<?php echo $termino;?>'><img src="images/logotealca.png" width="98" height="43" alt="tealca"></a></li>         
+          <li><a href='index.php?filtro=MRW&searchterm=<?php echo $termino;?>'><img src="images/logomrw.png"  alt="mrw"></a></li>
+          <li><a href='index.php?filtro=ZOOM&searchterm=<?php echo $termino;?>'><img src="images/logozoom.png"  alt="zoom"></a></li>
+          <li><a href='index.php?filtro=DOMESA&searchterm=<?php echo $termino;?>'><img src="images/logodomesa.png"  alt="domesa"></a></li>
+          <li><a href='index.php?filtro=TEALCA&searchterm=<?php echo $termino;?>'><img src="images/logotealca.png"  alt="tealca"></a></li>         
         </ul>
       </div>
 
@@ -381,7 +382,7 @@ if (isset($_GET["searchterm"]))
        
       //SI SOLO HAY UNA PALABRA DE BUSQUEDA SE ESTABLECE UNA INSTRUCION CON LIKE 
       
-       $sql_total="SELECT * FROM agencias WHERE EMPRESA = 'DOMESA' AND (EMPRESA LIKE '%$busqueda%' OR OD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%') LIMIT 0,80";
+       $sql_total="SELECT * FROM agencias WHERE EMPRESA = 'DOMESA' AND (EMPRESA LIKE '%$busqueda%' OR COD_AGE LIKE '%$busqueda%' OR NOM_AGE LIKE '%$busqueda%' OR DIR_AGE LIKE '%$busqueda%' OR EST_AGE LIKE '%$busqueda%' OR CIU_AGE LIKE '%$busqueda%') LIMIT 0,80";
 
        $num_rows_total = mysqli_num_rows(mysqli_query($conexion,$sql_total));      
       }
@@ -656,13 +657,17 @@ if (isset($_GET["searchterm"]))
     {
     //haciendo la tabla responsive  
       ?>    
-      <div class= "tabla">    
-        
+      
+      
+      <div class= "tabla" >    
+        <div class="sql-search">
+            <p>Cerca de <?php echo $num_rows_total?> resultados para: <strong><?php echo $busqueda?></strong></p>
+        </div>
       <?php
         
-        echo "<p>Cerca de $num_rows_total resultados para: <strong>$busqueda</strong></p>" ; //paginación
+        //echo "<p>Cerca de $num_rows_total resultados para: <strong>$busqueda</strong></p>" ; //paginación
 
-        echo "<table class='tabla'><tr>";      //creamos la tabla
+        echo "<table><tr>";      //creamos la tabla
         echo "<th>Empresa</th>";
         echo "<th>Código</th>";
         echo "<th>Nombre</th>";
@@ -691,8 +696,13 @@ if (isset($_GET["searchterm"]))
    }
 
       echo "</table>";                            //cerramos la tabla
-
+  ?>    
+      <div class="sql-search">  
+      <p>Página <?php echo $pagina?>  de  <?php echo$total_paginas?> </p>
       
+      </div>  
+      
+  <?PHP    
      
 
     //-------------------paginacion
@@ -700,9 +710,9 @@ if (isset($_GET["searchterm"]))
     //muestro los distintos índices de las páginas, si es que hay varias páginas 
     if ($total_paginas > 1)
     { 
-      echo "<p>Página $pagina  de  $total_paginas </p>";
-       ?>
-
+      ?>
+      
+      
        <div class="pagination">        
        <?php 
 
@@ -771,6 +781,7 @@ if (isset($_GET["searchterm"]))
 
     }
        ?>
+       
        </div> 
     </div>
        <?php
@@ -797,14 +808,34 @@ else //isset existe el searchterm
 
 ?>
  
+  <!-- <div class="footer_resize">
+    <div class="footer">
+            <div class="leftt">
+            <p>© Páginas web desde 2017 BUSCATUAGENCIA.COM.VE Todos los derechos reservados.<br />
+            <a href="index.php"> Inicio </a> | <a href="contacto.html"> Contacto |</p>
+            </div>
+            
+            <div class="rightt">
+            <p><a href="index.php"><strong>buscatuagencia.com.ve</strong></a></p>
+            </div>
+        
+        </div>
+    <div class="clr"></div>
+    </div> -->
+
+
  <div class="footer">
     <div class="footer_resize">
-        
-          <p class="leftt">© Páginas web desde 2017 BUSCATUAGENCIA.COM.VE Todos los derechos reservados.<br />
-          <a href="index.php"> Inicio </a> | <a href="contacto.html"> Contacto |</p>
           
-          <p class="rightt"><a href="index.php"><span>buscatuagencia.com.ve</span></a></p>
-            
+          <div class="lefttt">
+          <p >© Páginas web desde 2017 BUSCATUAGENCIA.COM.VE Todos los derechos reservados.<br />
+          <a href="index.php"> Inicio </a> | <a href="contacto.html"> Contacto |</a></p>
+          </div>
+
+          <div class="righttt">
+          <p ><a href="index.php"><span>buscatuagencia.com.ve</span></a></p>
+          </div>
+
     </div>
      <div class="clr"></div>
   </div>
