@@ -12,7 +12,8 @@
 
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link href="styles.css" rel="stylesheet">
-<script type="text/javascript"  src="./scripts.js"></script> 
+<link href="fonts.css" rel="stylesheet">  
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> -->
 
@@ -23,8 +24,9 @@
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="scripts.js" type="text/javascript"></script>
 
 <script>
 $(function() {
@@ -36,6 +38,8 @@ $(function() {
    
    });              
 });
+
+
 </script>
 
 </head>
@@ -99,6 +103,10 @@ $(function() {
         <h1>Buscar por empresa de envíos:</h1>
       </div>
       <div class="clr"></div>
+
+      <!-- <div class="menu_bar">
+          <a href="#" class="bt_menu"><span class="icon-menu"></span>Buscar por empresa de envío</a>
+      </div> -->
           
       <div class="menu">
         <ul>         
@@ -697,10 +705,7 @@ if (isset($_GET["searchterm"]))
 
       echo "</table>";                            //cerramos la tabla
   ?>    
-      <div class="sql-search">  
-      <p>Página <?php echo $pagina?>  de  <?php echo$total_paginas?> </p>
       
-      </div>  
       
   <?PHP    
      
@@ -711,8 +716,12 @@ if (isset($_GET["searchterm"]))
     if ($total_paginas > 1)
     { 
       ?>
-      
-      
+        <div class="sql-search">  
+          <p>Página <?php echo $pagina?>  de  <?php echo$total_paginas?> </p>
+        </div>  
+        
+    </div>
+      <div class="main_pagination">  
        <div class="pagination">        
        <?php 
 
@@ -783,16 +792,12 @@ if (isset($_GET["searchterm"]))
        ?>
        
        </div> 
-    </div>
+      </div>  
        <?php
 
 
-       
-
     //cerramos la conexiòn
     mysqli_close($conexion);
-
-  
 
 
 } 
@@ -808,22 +813,6 @@ else //isset existe el searchterm
 
 ?>
  
-  <!-- <div class="footer_resize">
-    <div class="footer">
-            <div class="leftt">
-            <p>© Páginas web desde 2017 BUSCATUAGENCIA.COM.VE Todos los derechos reservados.<br />
-            <a href="index.php"> Inicio </a> | <a href="contacto.html"> Contacto |</p>
-            </div>
-            
-            <div class="rightt">
-            <p><a href="index.php"><strong>buscatuagencia.com.ve</strong></a></p>
-            </div>
-        
-        </div>
-    <div class="clr"></div>
-    </div> -->
-
-
  <div class="footer">
     <div class="footer_resize">
           
@@ -833,7 +822,7 @@ else //isset existe el searchterm
           </div>
 
           <div class="righttt">
-          <p ><a href="index.php"><span>buscatuagencia.com.ve</span></a></p>
+          <p><a href="index.php"><span>buscatuagencia.com.ve</span></a></p>
           </div>
 
     </div>
