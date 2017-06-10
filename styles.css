@@ -93,6 +93,7 @@ a:hover{text-decoration:underline;}
    6px 6px 0 rgb(22, 160, 133),
    7px 7px 0 rgb(22, 160, 133)
   ;
+  background-color: rgb(26, 188, 156);
 }
 
 #field>input[type=text],#field>button {
@@ -216,7 +217,7 @@ box-sizing: border-box;
 }
 
 /*menu*/  
-.menu{padding:0; margin:0 0 0 23%; width: 100%;  /*float:left*/; max-width: 730px; display: block;}
+.menu{padding:5px 0; margin:0 0 0 23%; width: 100%;  /*float:left*/; max-width: 730px; display: block;}
 .menu ul{  padding:0; margin:0; list-style:none;border:0 ;}
 .menu ul li{margin: 0; padding:0; border:0; display: inline-block; width: 15.5%;}
 .menu img
@@ -235,7 +236,7 @@ box-sizing: border-box;
 .left2{margin:0 0 0 24%; padding:0; text-align:left;max-width:730px; width: 100%; display: block;}
 
 /*menu 2*/
-.menu2{padding:0; margin:0 0 0 23%; width: 100%;  /*float:left*/; max-width: 730px; display: block; }
+.menu2{padding:5px 0; margin:0 0 0 23%; width: 100%;  /*float:left*/; max-width: 730px; display: block; }
 .menu2 ul{ padding:0; margin:0; list-style:none;border:0 ;}
 .menu2 ul li{margin: 0; padding:0; border:0; display: inline-block; width: 15.5%;}
 .menu2 img
@@ -349,9 +350,11 @@ tr:nth-child(even)
   background-color: #f2f2f2;
 }
 
-
-tr:hover {
-  background-color: #ddd;
+@media (min-width: 900px) 
+{
+  tr:hover {
+    background-color: #ddd;
+  }
 }
 
 th 
@@ -372,19 +375,30 @@ font-size: 0.8em;
 
 .main_pagination
 {
+  padding: 0;
+  margin: 0;
   width: 100%;
-  max-width:960px;
-  margin: 0 auto;
+  
+  
+
 } 
 
 .pagination
 {
 
 text-align: center;
-/*position: relative;
-bottom: 10;*/
-bottom: 48px; position: absolute;
+/*margin: 0 auto;
+position: relative;
+bottom: 10;
+bottom: 0;
+position: relative;*/
+width:960px;
 
+   position: absolute;
+   top: 80%;
+   left: 20%;
+   margin-top: 65px;
+  margin-left: -80px;
 }
 
 .pagination a
@@ -673,8 +687,6 @@ text-align: justify;
   {
      font: 1.1em 'Montserrat Alternates';
   }
-  
-
 }
 
 @media (max-width: 600px) 
@@ -700,13 +712,16 @@ text-align: justify;
   {
   font: 0.8em 'Montserrat Alternates'; 
   padding: 1.35em 0em;   
+  /*box-shadow: none;*/
+  float: none;
   }
 
 
   #field>input[type=text] {
-  font: 1em 'Montserrat Alternates';     
-  padding: 0.95em 0em;  
+  font: 0.8em 'Montserrat Alternates';     
+  padding: 1.345em 0em;  
   margin-bottom: 3%;
+  /*box-shadow: none;*/
   } 
   
   ul.ui-autocomplete 
@@ -829,6 +844,12 @@ text-align: justify;
     width: 23%;
   }
 
+  .tabla
+  {
+    width: 95%;
+    margin-bottom: 1%;
+  }
+
   th
   {
     font-size: 0.7em;
@@ -838,6 +859,7 @@ text-align: justify;
   {
   font-family: Verdana, Geneva, sans-serif; 
   font-size: 0.6em;
+  padding: 3px;
   }
 
   .sql-search p 
@@ -851,13 +873,23 @@ text-align: justify;
     max-width:960px;
    margin: 0 auto;
    position: static;
+   margin-bottom: 2%;
   }
 
   .pagination a
   {
-    font: 0.38em 'Montserrat Alternates';
-    padding: 0;
+    font: 0.9em 'Montserrat Alternates';
+    padding: 0.2px 0.2px;
+    box-sizing: border-box;
   }
+
+  .pagination span
+  {
+    font: 0.7em 'Montserrat Alternates';
+    /*padding: 0.5px 0.5px;
+    box-sizing: border-box;*/
+  }
+
 
   .footer
   {

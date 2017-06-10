@@ -81,6 +81,7 @@ function validacion()
 					$(".errortext").text('Este campo no puede estar vacío');
 					$(".error").fadeIn("slow");
 					$(".tabla").fadeOut("slow");
+					$(".main_pagination").fadeOut("slow");
 					
 				});	
 

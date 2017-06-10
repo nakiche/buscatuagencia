@@ -39,7 +39,7 @@ $(function() {
           <a href="./index.php"><img src="images/logo_tuagecia.png" width="160" height="59" border="0" alt="logo"></a>
         </div>
     
-			 
+			  <div class="entrada">
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" onsubmit="return validacion();">
           <div class="ui-widget" id="field">
          
@@ -48,7 +48,8 @@ $(function() {
       
           </div>
         </form>
-      
+        </div>
+
       </div> 
     </div>  
 
@@ -68,7 +69,7 @@ $(function() {
             
           
             <div class="logo2">
-              <a><img src="images/logozoom1.png" height="47" width="156" border="0" alt="logo"></a>
+              <a><img src="images/logozoom1.png" border="0" alt="logo"></a>
             </div>
              
             <div class="clr"></div>
@@ -182,13 +183,15 @@ if (isset($_GET["searchterm"]))
     {
     //haciendo la tabla responsive  
       ?>    
-      <div class= "tabla">    
-        
+      <div class= "tabla" >    
+        <div class="sql-search">
+            <p>Cerca de <?php echo $num_rows_total?> resultados para: <strong><?php echo $busqueda?></strong></p>
+        </div>
       <?php
         
-        echo "<p>Cerca de $num_rows_total resultados para: <strong>$busqueda</strong></p>" ; //paginación
+        //echo "<p>Cerca de $num_rows_total resultados para: <strong>$busqueda</strong></p>" ; //paginación
 
-        echo "<table class='tabla'><tr>";      //creamos la tabla
+        echo "<table><tr>";      //creamos la tabla
         echo "<th>Empresa</th>";
         echo "<th>Código</th>";
         echo "<th>Nombre</th>";
@@ -197,14 +200,17 @@ if (isset($_GET["searchterm"]))
         echo "<th>Dirección</th>";
         echo "<th>Estado</th>";
         echo "<th>Ciudad</th></tr>";
+
     }
 
     while($fila=mysqli_fetch_array($resulados, MYSQL_ASSOC))    
     {
 
       echo "<tr>";                              //llenamos la tabla
+
+      // echo "<td>".$fila['COD_INT']. "</td>";
       echo "<td>".$fila['EMPRESA']. "</td>";
-      echo "<td class='centered'>".$fila['COD_AGE']."<br><a href='popup.php?cod_int=".$fila['COD_INT']."' onclick='popupwindow();' target='pop'>Ver agencia</a></td>"; // link para ver agencia en el popup
+      echo "<td class='centered'>".$fila['COD_AGE']."<br><a href='popup.php?cod_int=".$fila['COD_INT']."' onclick='popupwindow();' target='pop'>Ver agencia</a></td>";
       echo "<td>".$fila['NOM_AGE']. "</td>";
       echo "<td>".$fila['TEL_AGE']. "</td>";
       echo "<td>".$fila['HOR_AGE']. "</td>";
@@ -212,57 +218,118 @@ if (isset($_GET["searchterm"]))
       echo "<td>".$fila['EST_AGE']. "</td>";
       echo "<td>".$fila['CIU_AGE']. "</td></tr>";    
    }
+
       echo "</table>";                            //cerramos la tabla
+  ?>    
+      
+      
+  <?PHP    
+     
 
     //-------------------paginacion
+
     //muestro los distintos índices de las páginas, si es que hay varias páginas 
     if ($total_paginas > 1)
     { 
-      echo "<p>Página $pagina  de  $total_paginas </p>";      
       ?>
-        <div class="pagination">        
-      <?php 
+        <div class="sql-search">  
+          <p>Página <?php echo $pagina?>  de  <?php echo$total_paginas?> </p>
+        </div>  
+        
+    </div>
+      <div class="main_pagination">  
+       <div class="pagination">        
+       <?php 
 
-      if ($pagina !=1)
-      {
-        //echo "<a class='different' href='index.php?searchterm=$busqueda&pagina=".($pagina-1)."'><img src='images/izq.gif' border='0'></a>";
-        echo "<a href='zoom.php?searchterm=$busqueda&pagina=".($pagina-1)."'><strong><<</strong></a>";
-      }                                                     
+       
+       
+    if(empty($_GET["filtro"]))  //valido si existe un filtro
+    {
+
+       if ($pagina !=1)
+       {
+          //echo "<a class='different' href='index.php?searchterm=$busqueda&pagina=".($pagina-1)."'><img src='images/izq.gif' border='0'></a>";
+          echo "<a href='zoom.php?searchterm=$busqueda&pagina=".($pagina-1)."'><strong><<</strong></a>";
+       }                                                     
 
       for ($i=1;$i<=$total_paginas;$i++)
       { 
         if ($pagina == $i) 
           //si muestro el índice de la página actual, no coloco enlace 
+      
+
           echo "<span>$pagina</span>"; 
         else 
           //si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
+          //echo "<a href='index.php?pagina=" . $i . "&criterio=" . $txt_criterio . "'>" . $i . "</a> "; 
+
           echo "<a href='zoom.php?searchterm=$busqueda&pagina=$i'>  $i </a>";
       }
 
       if ($pagina !=$total_paginas)
-      {
-        echo "<a href='zoom.php?searchterm=$busqueda&pagina=".($pagina+1)."'><strong>>></strong></a>";
-      }      
+       {
+          //echo "<a class='different' href='index.php?searchterm=$busqueda&pagina=".($pagina+1)."'><img src='images/der.gif' border='0'></a>";
+           echo "<a href='zoom.php?searchterm=$busqueda&pagina=".($pagina+1)."'><strong>>></strong></a>";
+       }      
+
+    }
+    else //si hay un filtro
+    {
+
+         if ($pagina !=1)
+       {
+            
+            echo "<a href='zoom.php?searchterm=$busqueda&filtro=$filtro&pagina=".($pagina-1)."'><strong><<</strong></a>";
+       }                                                     
+
+      for ($i=1;$i<=$total_paginas;$i++)
+      { 
+        if ($pagina == $i) 
+          //si muestro el índice de la página actual, no coloco enlace 
+      
+
+          echo "<span>$pagina</span>"; 
+        else 
+          //si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
+          //echo "<a href='index.php?pagina=" . $i . "&criterio=" . $txt_criterio . "'>" . $i . "</a> "; 
+
+          echo "<a href='zoom.php?searchterm=$busqueda&filtro=$filtro&pagina=$i'>  $i </a>";
+      }
+
+      if ($pagina !=$total_paginas)
+       {
+          echo "<a href='zoom.php?searchterm=$busqueda&filtro=$filtro&pagina=".($pagina+1)."'><strong>>></strong></a>";
+       }      
+
+
+     }// isset get filtro
 
     }
        ?>
-        </div> 
-      </div>
+       
+       </div> 
+      </div>  
        <?php 
     //cerramos la conexiòn
     mysqli_close($conexion);   
 }
        ?>     
 
-    <div class="footer">
-      <div class="footer_resize">
-        <p class="leftt">© Páginas web desde 2017 BUSCATUAGENCIA.COM.VE Todos los derechos reservados.<br />
-        <a href="index.php"> Inicio </a> | <a href="contacto.html"> Contacto |</p>  
-        <p class="rightt"><a href="index.php"><span>buscatuagencia.com.ve</span></a></p>
-            
-       </div>
-      <div class="clr"></div>
+<div class="footer">
+    <div class="footer_resize">
+          
+          <div class="lefttt">
+          <p >© Páginas web desde 2017 BUSCATUAGENCIA.COM.VE Todos los derechos reservados.<br />
+          <a href="index.php"> Inicio </a> | <a href="contacto.html"> Contacto |</a></p>
+          </div>
+
+          <div class="righttt">
+          <p><a href="index.php"><span>buscatuagencia.com.ve</span></a></p>
+          </div>
+
     </div>
+     <div class="clr"></div>
+  </div>
     <div class="clr"></div>
 
   </div>

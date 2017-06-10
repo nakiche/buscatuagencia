@@ -713,24 +713,23 @@ if (isset($_GET["searchterm"]))
     //-------------------paginacion
 
     //muestro los distintos índices de las páginas, si es que hay varias páginas 
-    if ($total_paginas > 1)
+    if ($total_paginas > 1 )
     { 
       ?>
         <div class="sql-search">  
           <p>Página <?php echo $pagina?>  de  <?php echo$total_paginas?> </p>
         </div>  
-        
-    </div>
+
+      </div><!--  table -->
+
       <div class="main_pagination">  
        <div class="pagination">        
-       <?php 
-
-       
+       <?php      
        
     if(empty($_GET["filtro"]))  //valido si existe un filtro
     {
 
-       if ($pagina !=1)
+       if ($pagina !=1 )
        {
           //echo "<a class='different' href='index.php?searchterm=$busqueda&pagina=".($pagina-1)."'><img src='images/izq.gif' border='0'></a>";
           echo "<a href='index.php?searchterm=$busqueda&pagina=".($pagina-1)."'><strong><<</strong></a>";
