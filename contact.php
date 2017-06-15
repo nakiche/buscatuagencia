@@ -2,9 +2,7 @@
 
 $to="tommynaquiche@hotmail.com";
 $subject="Contacto desde el sitio web tuagencia.com.ve";
-
 //recuperando datos ingresados por el usuario
-
 $message= "Detalles del formulario de contacto:<br>";
 $message .= "Nombre: " . $_POST["name"]. "<br>";
 $message .= "E-mail: " . $_POST["email"]. "<br>";
@@ -18,18 +16,19 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 $bool = mail($to,$subject,$message,$headers);
 
-if($bool){
+if($bool)
+{
     echo 
 	'<script languaje="javascript">alert("Mensaje enviado, estaremos atendiendo su solicitud a la brevedad posible");
 	location.href = "contacto.html"
-	</script>';	
-		
-}else{
+	</script>';			
+}
+else
+{
     echo 
 	'<script languaje="javascript">alert("Mensaje no ha sido enviado");
 	location.href = "contacto.html"
-	</script>';
-	
+	</script>';	
 }
 
 

@@ -10,8 +10,7 @@
   {
     echo "Fallo al conectar con la base de datos";
     exit();  
-  }
-    
+  }    
   mysqli_select_db($conexion,$db_nombre)or die("no se encuentra la bdD");
   //para incluir los tildes 
   mysqli_set_charset($conexion, "utf8");  
@@ -19,24 +18,19 @@
   $term = trim(strip_tags($_GET['term']));
   $caracteres_malos = array("<", ">", "\"", "'", "/", "<", ">", "'", "/");
   $caracteres_buenos = array("& lt;", "& gt;", "& quot;", "& #x27;", "& #x2F;", "& #060;", "& #062;", "& #039;", "& #047;");
-  $term = str_replace($caracteres_malos, $caracteres_buenos, $term);
-    
+  $term = str_replace($caracteres_malos, $caracteres_buenos, $term);    
   //evaluamos cuantas partes tiene la consulta   
   $trozos=explode(" ",$term); 
   $numero=count($trozos); 
-
   //si tiene solo una palabra hacemos la consulta sql con LIKE 
   if ($numero==1) 
   { 
-
-  $consulta = "SELECT * FROM agencias WHERE EMPRESA = 'DOMESA' AND (EMPRESA LIKE '%$term%' 
-  OR COD_AGE LIKE '%$term%' OR NOM_AGE LIKE '%$term%' OR NOM_AGE LIKE '%$term%' OR DIR_AGE LIKE '%$term%' OR EST_AGE LIKE '%$term%' OR CIU_AGE LIKE '%$term%') LIMIT 0,10";
-
+    $consulta = "SELECT * FROM agencias WHERE EMPRESA = 'DOMESA' AND (EMPRESA LIKE '%$term%' 
+    OR COD_AGE LIKE '%$term%' OR NOM_AGE LIKE '%$term%' OR NOM_AGE LIKE '%$term%' OR DIR_AGE LIKE '%$term%' OR EST_AGE LIKE '%$term%' OR CIU_AGE LIKE '%$term%') LIMIT 0,10";
   }
   else //si tiene mas de una palabra hacemos la consulta sql con MATCH AGAINST 
   { 
-
-  $consulta="SELECT *, MATCH (EMPRESA,COD_AGE,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$term' IN BOOLEAN MODE) as relevancia
+    $consulta="SELECT *, MATCH (EMPRESA,COD_AGE,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$term' IN BOOLEAN MODE) as relevancia
     FROM agencias WHERE MATCH (EMPRESA,COD_AGE,NOM_AGE,DIR_AGE,EST_AGE,CIU_AGE) AGAINST ('$term' IN BOOLEAN MODE ) AND EMPRESA = 'DOMESA' HAVING relevancia > 0.2 ORDER BY relevancia DESC LIMIT 0,10";
   }    
   
