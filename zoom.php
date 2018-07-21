@@ -193,7 +193,7 @@ if (isset($_GET["searchterm"]))
 
     }
 
-    while($fila=mysqli_fetch_array($resulados, MYSQL_ASSOC))    
+    while($fila=mysqli_fetch_array($resulados, MYSQLI_ASSOC))    
     {
 
       echo "<tr>";                              //llenamos la tabla

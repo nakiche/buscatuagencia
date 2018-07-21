@@ -189,7 +189,7 @@ if (isset($_GET["searchterm"]))
         echo "<th>Ciudad</th></tr>";
     }
 
-    while($fila=mysqli_fetch_array($resulados, MYSQL_ASSOC))    
+    while($fila=mysqli_fetch_array($resulados, MYSQLI_ASSOC))    
     {
 
       echo "<tr>";                              //llenamos la tabla
